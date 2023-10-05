@@ -8,35 +8,37 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li><router-link to="/acceuil">Accueil</router-link></li>
                 <li>
-                    <router-link to="/event">Sorties et séjours</router-link>
+                    <a :href="route('acceuil')">Accueil</a>
                 </li>
                 <li>
-                    <router-link to="/organization">Association</router-link>
+                    <a :href="route('event')">Sorties et séjours</a>
                 </li>
                 <li>
-                    <router-link to="/guideline"
-                        >Règles et organisation</router-link
-                    >
+                    <a :href="route('organization')">Association</a>
                 </li>
                 <li>
-                    <router-link to="/gallery-photos"
-                        >Galerie photos</router-link
-                    >
+                    <a :href="route('guideline')">Règles et organisation</a>
                 </li>
-                <li><router-link to="/contact">Contact</router-link></li>
+                <li>
+                    <a :href="route('galleryPhotos')">Galerie photos</a>
+                </li>
+                <li>
+                    <a :href="route('contact')">Contact</a>
+                    <!-- <Link href="contact">Contact</Link> -->
+                </li>
             </ul>
-            <router-link to="/">
-                <!-- <h1 class="logo">
+            <!-- <router-link to="/"> -->
+            <!-- <h1 class="logo">
             <img :src="logoHeader.url" :alt="logoHeader.alt" />
           </h1> -->
-            </router-link>
+            <!-- </router-link> -->
         </div>
     </nav>
 </template>
 
 <script>
+// import { Link } from '@inertiajs/vue3'
 export default {
     name: "NavBar",
 
@@ -99,17 +101,6 @@ export default {
     margin-left: 1.5rem;
     font-size: 1.3rem;
 }
-
-//   .navbar a {
-//     color: $nav-bg-color;
-//     // text-decoration: none;
-//     // font-weight: 500;
-//     // transition: color 0.3s ease-in-out;
-//   }
-
-//   .navbar a:hover {
-//     color: var(--couleur-burlywood);
-//   }
 
 @media (max-width: 768px) {
     .navbar {

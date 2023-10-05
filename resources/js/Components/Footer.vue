@@ -4,7 +4,8 @@
             <ul class="menu-items">
                 <li>Copyright &copy; | Tous droits réservés</li>
                 <li class="font-bold">
-                    <router-link to="/#">Mentions légales</router-link>
+                  
+                    <a :href="route('legalNotice')">Mentions légales</a>
                 </li>
                 <li>
                     <small>
