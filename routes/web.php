@@ -16,14 +16,14 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
@@ -36,7 +36,7 @@ Route::get('/', function () {
 // });
 
 // Route pour la page d'acceuil
-Route::get('/acceuil', function () {
+Route::get('/', function () {
     return Inertia::render('Acceuil');
 })->name('acceuil');
 
@@ -65,4 +65,9 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
-require __DIR__.'/auth.php';
+// Route pour les mentions légales
+Route::get('/legal-notice', function () {
+    return Inertia::render('LegalNotice');
+})->name('legalNotice');
+
+require __DIR__ . '/auth.php';
