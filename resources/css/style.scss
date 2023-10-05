@@ -1,0 +1,113 @@
+@import "../css/variables.scss";
+
+
+
+
+
+
+
+
+/****************************************************
+                      GLOBAL
+*****************************************************/
+
+* {
+    box-sizing: border-box;
+}
+
+// html {
+//     font-size: 62.5%;
+// }
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    list-style: none;
+}
+// h1 de toutes les pages
+h1 {
+    background-color: $main-bg-color;
+    width: 250px;
+    height: 45px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    color: $main-text-color;
+    font-weight: bolder;
+    font-size: x-large;
+    margin-top: 20px;
+}
+// contenu sur fond background de toutes les pages
+.content {
+    background-color: $content-bg-color;
+    width: 90%;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    p,
+    li {
+        color: $main-text-color;
+    }
+}
+
+/****************************************************
+                      HEADER
+*****************************************************/
+
+/****************************************************
+                      MAIN
+*****************************************************/
+
+/****************************************************
+                      FOOTER
+*****************************************************/
+
+/******************************************************************************/
+/*=======================================================
+                    MEDIA QUERIES
+=========================================================*/
+/******************************************************************************/
+
+/*========================= RESPONSIVE TABLETTE ======================*/
+
+@media screen and (min-width: 768px) {
+    /*s'applique à partir de 768px et au-delà*/
+
+    /* ============ GLOBAL ==============*/
+
+    /* ============ HEADER ==============*/
+
+    /* ============ MAIN ==============*/
+
+    /* ============ FOOTER ==============*/
+}
+
+/*fermeture @media tablette*/
+
+/******************************************************************************/
+
+/*========================= RESPONSIVE DESKTOP ======================*/
+
+@media screen and (min-width: 1025px) {
+    /*s'applique à partir de 1025px et au-delà*/
+
+    /* ============ GLOBAL ==============*/
+
+    /* ============ HEADER ==============*/
+
+    /* ============ MAIN ==============*/
+
+    /* ============ FOOTER ==============*/
+}
+
+/*fermeture @media desktop*/
