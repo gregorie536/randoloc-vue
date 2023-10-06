@@ -9,7 +9,7 @@
             </div>
             <ul class="menu-items">
                 <li>
-                    <a :href="route('acceuil')">Accueil</a>
+                    <a :href="route('home')">Accueil</a>
                 </li>
                 <li>
                     <a :href="route('event')">Sorties et séjours</a>

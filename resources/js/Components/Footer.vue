@@ -82,5 +82,6 @@ export default {
         display: flex;
         text-align: center;
     }
+    margin-top: 20px;
 }
 </style>

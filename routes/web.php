@@ -37,8 +37,8 @@ use Inertia\Inertia;
 
 // Route pour la page d'acceuil
 Route::get('/', function () {
-    return Inertia::render('Acceuil');
-})->name('acceuil');
+    return Inertia::render('Home');
+})->name('home');
 
 // Route pour la page evenements
 Route::get('/event', function () {
