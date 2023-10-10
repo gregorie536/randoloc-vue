@@ -16,6 +16,37 @@
 <script>
 export default {
     name: "Card",
+    data() {
+        return {
+            cardName: [{
+                name: "Sorties et séjours",
+                link: "/sorties-et-sejours",
+                image: "/images/page-home/event.jpg"
+            },
+            {name: "L'info du moment",
+            link: "/sorties-et-sejours",
+            image: "/images/page-home/event.jpg"
+            },
+            {name: "Association",
+            link: "/sorties-et-sejours",
+            image: "/images/page-home/event.jpg"
+            },
+            {name: "Règles et organisations",  
+            link: "/sorties-et-sejours",
+            image: "/images/page-home/event.jpg"
+            },
+            {
+            name: "Galerie photos",    
+            link: "/sorties-et-sejours",
+            image: "/images/page-home/event.jpg"
+            },
+            {name: "Contact",   
+            link: "/sorties-et-sejours",
+            image: "/images/page-home/event.jpg"
+            },
+        ]
+        };
+    },
  
 };
 
