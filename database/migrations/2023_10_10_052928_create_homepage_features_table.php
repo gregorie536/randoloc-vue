@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('homepage_features', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
+            $table->text('description');
+            $table->string('location');
             $table->timestamps();
         });
     }

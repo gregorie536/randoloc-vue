@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('guidelines', function (Blueprint $table) {
             $table->id();
+            $table->int('price');
             $table->timestamps();
         });
     }
