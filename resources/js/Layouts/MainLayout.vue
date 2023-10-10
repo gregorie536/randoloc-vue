@@ -22,6 +22,7 @@ components: {
 </script>
 
 <style lang="scss">
+@import "../../css/style.scss";
 .layout-container {
 display: flex;
 flex-direction: column;
