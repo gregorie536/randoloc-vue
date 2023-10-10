@@ -1,12 +1,5 @@
 @import "../css/variables.scss";
 
-
-
-
-
-
-
-
 /****************************************************
                       GLOBAL
 *****************************************************/
@@ -15,9 +8,10 @@
     box-sizing: border-box;
 }
 
-// html {
-//     font-size: 62.5%;
-// }
+html {
+    // font-size: 62.5%;
+    background-color: $aliceblue;
+}
 
 img {
     max-width: 100%;
