@@ -116,9 +116,3 @@ const submit = () => {
         </form>
     </GuestLayout>
 </template>
-
-<script>
-export default {
-    props: ["csrf_token"],
-};
-</script>

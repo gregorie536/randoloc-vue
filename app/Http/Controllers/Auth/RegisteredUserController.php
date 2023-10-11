@@ -21,10 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        // return Inertia::render('Auth/Register');
-        return Inertia::render('Auth/Register', [
-            'csrf_token' => csrf_token(),
-        ]);
+        return Inertia::render('Auth/Register');
     }
 
     /**
