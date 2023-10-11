@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('picture');
+            $table->string('image');
             $table->string('location');
             $table->boolean('active')->default(false);
             $table->string('supervisor');
