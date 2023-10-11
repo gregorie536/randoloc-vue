@@ -27,6 +27,12 @@
                     <a :href="route('contact')">Contact</a>
                     <!-- <Link href="contact">Contact</Link> -->
                 </li>
+                <li>
+                    <a :href="route('login')">Login</a>
+                </li>
+                <li>
+                    <a :href="route('register')">Register</a>
+                </li>
             </ul>
             <!-- <router-link to="/"> -->
             <!-- <h1 class="logo">
@@ -39,9 +45,9 @@
 
 <script>
 // import { Link } from '@inertiajs/vue3'
-export default {
-    name: "NavBar",
 
+
+export default {
     // data() {
     //   return {
     //     logoHeader: {
