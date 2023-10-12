@@ -7,8 +7,9 @@
                 </div>
             </div>
         </div>
-        
-
+        <div class="flex justify-center items-center space">
+            <CardTop />
+        </div>
         <div class="flex justify-center items-center">
             <div class="content">
                 <ul>
@@ -37,15 +38,22 @@
                 </ul>
             </div>
         </div>
+        <div class="flex justify-center items-center space">
+            <CardBottom />
+        </div>
     </MainLayout>
 </template>
 
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import CardTop from "@/Components/CardTop.vue";
+import CardBottom from "@/Components/CardBottom.vue";
 export default {
     components: {
-        MainLayout,
-    },
+    MainLayout,
+    CardTop,
+    CardBottom
+},
     name: "Home",
     data() {
         return {
@@ -62,4 +70,11 @@ export default {
     background-size: cover;
     padding: 5%;
 }
+
+    .space {
+        margin-top: 20px;
+        // margin-bottom: 20px;
+    }
+    
+
 </style>

@@ -59,6 +59,28 @@ h1 {
 .main-text-color {
     color: $main-text-color;
 }
+/****************************************************
+                      MIXIN
+*****************************************************/
+
+@mixin rounded-card {
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+@mixin flex-and-rounded-card {
+    .flex-direction-row-desktop {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .rounded-card {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
 
 /****************************************************
                       HEADER
