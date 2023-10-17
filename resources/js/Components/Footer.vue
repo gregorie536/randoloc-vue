@@ -14,11 +14,10 @@
                     </small>
                 </li>
             </ul>
-
             <router-link to="/">
-                <!-- <h1 class="logo">
-          <img :src="logoHeader.url" :alt="logoHeader.alt" />
-        </h1> -->
+                        <!-- <h1 class="logo">
+                <img :src="logoHeader.url" :alt="logoHeader.alt" />
+                        </h1> -->
             </router-link>
         </div>
     </nav>
@@ -48,34 +47,14 @@ export default {
 //   padding-top: 10px;
 // }
 
-// footer {
-//   text-align: center;
-//   margin-right: 20px;
-//   margin-left: 20px;
-//   border-top: 1px solid var(--black);
-// }
-
-// .liens {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   .pageFooter {
-//     font-size: 15px;
-//   }
-// }
 .footer {
     background-color: $main-text-color;
     color: $nav-bg-color;
-    .footer-container {
-        display: flex;
-        justify-content: center;
-        // flex-direction: column;
-    }
+    display: flex;
+    justify-content: center;
     .menu-items{
       display: flex;
-        // justify-content: center;
         flex-direction: column;
-        // text-align: center;
         align-items: center;
     }
     small {

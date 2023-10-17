@@ -102,13 +102,19 @@ export default {
     width: 130px;
 }
 
+// .menu-items li {
+//     list-style: none;
+//     margin-left: 1.5rem;
+//     font-size: 1.3rem;
+//     display: flex;
+//     align-items: space-between;
+// }
 .menu-items li {
-    list-style: none;
-    margin-left: 1.5rem;
-    font-size: 1.3rem;
+    margin: 0 1rem; // Cela ajoute une marge à gauche et à droite de 1rem
 }
 
-@media (max-width: 768px) {
+// @media (max-width: 768px) {
+    @media (max-width: 1043px) {
     .navbar {
         opacity: 0.95;
     }
@@ -220,9 +226,9 @@ export default {
     }
 }
 
-@media (max-width: 500px) {
-    .navbar-container input[type="checkbox"]:checked ~ .logo {
-        display: none;
-    }
-}
+// @media (max-width: 500px) {
+//     .navbar-container input[type="checkbox"]:checked ~ .logo {
+//         display: none;
+//     }
+// }
 </style>

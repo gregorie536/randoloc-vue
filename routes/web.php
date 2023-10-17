@@ -5,6 +5,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+use App\Http\Controllers\ContactController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,13 +59,22 @@ Route::get('/guideline', function () {
 })->name('guideline');
 
 // Route pour la page contact
-Route::get('/contact', function () {
-    return Inertia::render('Contact');
-})->name('contact');
+// Route::get('/contact', function () {
+//     return Inertia::render('Contact');
+// })->name('contact');
 
 // Route pour les mentions légales
 Route::get('/legal-notice', function () {
     return Inertia::render('LegalNotice');
 })->name('legalNotice');
+
+
+/////////////////////////////TESTS/////////////////////////////////////
+
+// Route pour la page contact
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+// Route::get('/contact/edit', [ContactController::class, 'edit'])->name('contact.edit');
+// Route::post('/contact/update', [ContactController::class, 'update'])->name('contact.update');
+
 
 require __DIR__ . '/auth.php';
