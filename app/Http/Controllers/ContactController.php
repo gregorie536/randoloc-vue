@@ -5,30 +5,36 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
     public function index()
-{
-    $contact = Contact::first();
-    // dd($contact->toArray());
+    {
+        $presidentContact = Contact::where('type', 'president')->first();
+        $siteContact = Contact::where('type', 'site')->first();
 
+        return Inertia::render('Contact', [
+            'presidentContact' => $presidentContact,
+            'siteContact' => $siteContact
+        ]);
+    }
 
-    return Inertia::render('Contact', ['contact' => $contact]);
-}
+    public function edit()
+    {
+        $contacts = Contact::all();
+        return Inertia::render('Contact/Edit', [
+            'contacts' => $contacts
+        ]);
+    }
 
+    public function update(Request $request)
+    {
+        foreach ($request->contacts as $updatedContact) {
+            $contact = Contact::find($updatedContact['id']);
+            $contact->update($updatedContact);
+        }
 
-//     public function edit()
-//     {
-//         $contact = Contact::first();
-//         return inertia('Contact/Edit', ['contact' => $contact]);
-//     }
-
-//     public function update(Request $request)
-//     {
-//         $contact = Contact::first();
-//         $contact->update($request->all());
-
-//         return redirect()->route('contact.index')->with('success', 'Contact modifié avec succès.');
-//     }
+        return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie!');
+    }
 }
