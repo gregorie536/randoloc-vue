@@ -50,16 +50,16 @@
                     </li>
                     <li>
                         - La licence fédérale pour les randonneurs avec une
-                        assurance, soit 28 €
+                        assurance, soit {{ licensePrice.price }} €
                     </li>
                     <li>
                         - L’inscription à l'association des marcheurs du pays de
-                        Locminé, soit 8€ (offerte pour les renouvellements
+                        Locminé, soit {{ associationPrice.price }} € (offerte pour les renouvellements
                         d’adhésion)
                     </li>
                     <li>
                         Ainsi, le montant de la cotisation pour la saison
-                        2021-2022 est de 36 € Pour adhérer, merci de remplir les
+                        {{ seasonYear.season_year }} est de {{ totalPrice.price }} € Pour adhérer, merci de remplir les
                         documents ci-dessous :
                     </li>
                     <li class="font-bold">Bulletin d’inscription</li>
@@ -158,12 +158,19 @@ export default {
         MainLayout,
     },
     name: "Guideline",
+    props: ['licensePrice',
+        'associationPrice',
+        'totalPrice',
+        'seasonYear'
+    ] 
+    ,
     data() {
         return {
             titre: "Règles et organisations",
         };
     },
 };
+
 </script>
 
 <style scoped lang="scss">

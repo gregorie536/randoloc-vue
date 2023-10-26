@@ -7,6 +7,7 @@ use Inertia\Inertia;
 
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GuidelineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,17 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'successMessage' => session('successMessage')
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -73,8 +82,13 @@ Route::get('/legal-notice', function () {
 
 // Route pour la page contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-// Route::get('/contact/edit', [ContactController::class, 'edit'])->name('contact.edit');
-// Route::post('/contact/update', [ContactController::class, 'update'])->name('contact.update');
+Route::get('/contact/edit', [ContactController::class, 'edit'])->name('contact.edit');
+Route::post('/contacts/update', [ContactController::class, 'update'])->name('contacts.update');
+
+// Route pour la page règlement et organisation (Guidelines)
+Route::get('/guideline', [GuidelineController::class, 'index'])->name('guideline');
+Route::get('/guideline/edit', [GuidelineController::class, 'edit']);
+Route::post('/guidelines/update', [GuidelineController::class, 'update']);
 
 
 require __DIR__ . '/auth.php';
