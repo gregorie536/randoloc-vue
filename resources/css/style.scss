@@ -81,6 +81,24 @@ h1 {
         margin-right: 25px;
     }
 }
+@mixin stylesMixin {
+    .bg-main-bg-color {
+        background-color: $main-bg-color;
+    }
+
+    .text-main-text-color {
+        color: $main-text-color;
+    }
+
+    .border-aliceblue {
+        border-color: $aliceblue;
+    }
+
+    .bg-nav-bg-color {
+        background-color: $nav-bg-color;
+    }
+}
+
 
 /****************************************************
                       HEADER
