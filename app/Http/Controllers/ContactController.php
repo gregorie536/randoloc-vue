@@ -35,6 +35,6 @@ class ContactController extends Controller
             $contact->update($updatedContact);
         }
 
-        return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie!');
+        return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie !');
     }
 }
