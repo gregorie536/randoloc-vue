@@ -8,6 +8,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuidelineController;
+use App\Http\Controllers\GalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +54,9 @@ Route::get('/event', function () {
 })->name('event');
 
 // Route pour la page de la galerie photos
-Route::get('/gallery-photos', function () {
-    return Inertia::render('GalleryPhotos');
-})->name('galleryPhotos');
+    // Route::get('/gallery-photos', function () {
+    //     return Inertia::render('GalleryPhotos');
+    // })->name('galleryPhotos');
 
 // Route pour la page organisation
 Route::get('/organization', function () {
@@ -63,9 +64,9 @@ Route::get('/organization', function () {
 })->name('organization');
 
 // Route pour la page règlement et organisation
-Route::get('/guideline', function () {
-    return Inertia::render('Guideline');
-})->name('guideline');
+// Route::get('/guideline', function () {
+//     return Inertia::render('Guideline');
+// })->name('guideline');
 
 // Route pour la page contact
 // Route::get('/contact', function () {
@@ -89,6 +90,19 @@ Route::post('/contacts/update', [ContactController::class, 'update'])->name('con
 Route::get('/guideline', [GuidelineController::class, 'index'])->name('guideline');
 Route::get('/guideline/edit', [GuidelineController::class, 'edit']);
 Route::post('/guidelines/update', [GuidelineController::class, 'update']);
+
+// Route pour la page Gallerie Photos
+// Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+// Route::get('/gallery-photos', [GalleryController::class, 'index']);
+Route::get('/gallery-photos', [GalleryController::class, 'index'])->name('galleryPhotos');
+
+
+
+Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
+Route::get('/gallery/{gallery}/edit', [GalleryController::class, 'edit'])->name('gallery.edit');
+Route::put('/gallery/{gallery}', [GalleryController::class, 'update'])->name('gallery.update');
+Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
 
 
 require __DIR__ . '/auth.php';
