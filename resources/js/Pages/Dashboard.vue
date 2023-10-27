@@ -68,7 +68,7 @@ import { Head } from "@inertiajs/vue3";
                     </li>
                     <li class="mb-2">
                         <a
-                            href="/page2"
+                            href="/gallery/create"
                             class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                         >
                             <i class="fas fa-file-alt mr-2"></i>
