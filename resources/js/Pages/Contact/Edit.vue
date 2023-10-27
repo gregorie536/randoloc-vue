@@ -57,23 +57,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-.bg-main-bg-color {
-    background-color: rgba(200, 173, 127, 0.7);
-}
-
-.text-main-text-color {
-    color: #223663;
-}
-
-.border-aliceblue {
-    border-color: #F0F8FF;
-}
-
-.bg-nav-bg-color {
-    background-color: #C8AD7F;
-}
-
-/* Ajoutez ici vos autres styles si nécessaire */
+@import "../../../css/style.scss";
+@include stylesMixin;
 </style>
+
