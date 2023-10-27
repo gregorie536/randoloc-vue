@@ -9,5 +9,7 @@ class Gallery extends Model
 {
     use HasFactory;
 
+    protected $table = 'gallery_photos';
+
     protected $fillable = ['image', 'comment'];
 }
