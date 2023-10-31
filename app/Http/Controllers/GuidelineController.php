@@ -12,14 +12,13 @@ class GuidelineController extends Controller
     {
         $licensePrice = Guideline::where('type', 'licence_federale')->first();
         $associationPrice = Guideline::where('type', 'inscription_association')->first();
-        $totalPrice = Guideline::where('type', 'total')->first();
-
         $season_year = Guideline::latest('season_year')->first();
+        $totalPriceValue = $licensePrice->price + $associationPrice->price;
 
         return Inertia::render('Guideline', [
             'licensePrice' => $licensePrice,
             'associationPrice' => $associationPrice,
-            'totalPrice' => $totalPrice,
+            'totalPrice' => $totalPriceValue,
             'seasonYear' => $season_year,
         ]);
     }
@@ -37,8 +36,5 @@ class GuidelineController extends Controller
             $guideline->update($updatedGuideline);
         }
         return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie !');
-       
-        
-
     }
 }
