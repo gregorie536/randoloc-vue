@@ -73,7 +73,6 @@ export default {
 
     .space {
         margin-top: 20px;
-        // margin-bottom: 20px;
     }
     
 
