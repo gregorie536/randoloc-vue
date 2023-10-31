@@ -41,7 +41,7 @@ import { Head } from "@inertiajs/vue3";
                     </li>
                     <li class="mb-2">
                         <a
-                            href="/page2"
+                            href="/homepage_features/edit"
                             class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                         >
                             <i class="fas fa-file-alt mr-2"></i>
@@ -84,13 +84,10 @@ import { Head } from "@inertiajs/vue3";
                             Contact
                         </a>
                     </li>
-
-                    <!-- Ajoutez autant d'éléments de liste que nécessaire pour vos pages -->
                 </ul>
             </div>
-            <!-- Contenu principal -->
             <div class="flex-1 bg-gray-100 p-8">
-                <!-- Votre contenu principal ira ici -->
+                <!-- contenu principal -->
             </div>
         </div>
     </AuthenticatedLayout>
