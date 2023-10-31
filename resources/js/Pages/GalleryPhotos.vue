@@ -48,23 +48,4 @@ export default {
     @include rounded-card;
 }
 
-// @media screen and (min-width: 1025px) {
-//     @include flex-and-rounded-card;
-// }
-
-// .main-text-color {
-//     color: $main-text-color;
-// }
-
-// .image-container {
-//     width: 700px; // Votre largeur souhaitée
-//     height: 200px; // Votre hauteur souhaitée
-//     // overflow: hidden; // Cache tout ce qui dépasse du conteneur
-// }
-
-// .image-container img {
-//     width: 100%;
-//     height: 100%;
-//     // object-fit: cover;
-// }
-// </style>
+</style>
