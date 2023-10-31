@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuidelineController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomepageFeaturesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,14 +96,18 @@ Route::post('/guidelines/update', [GuidelineController::class, 'update']);
 // Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
 // Route::get('/gallery-photos', [GalleryController::class, 'index']);
 Route::get('/gallery-photos', [GalleryController::class, 'index'])->name('galleryPhotos');
-
-
-
 Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
 Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
 Route::get('/gallery/{gallery}/edit', [GalleryController::class, 'edit'])->name('gallery.edit');
 Route::put('/gallery/{gallery}', [GalleryController::class, 'update'])->name('gallery.update');
 Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+
+// Route pour la page Info de moment (homepage_features)
+Route::get('/homepage_features', [HomepageFeaturesController::class, 'index'])->name('homepage_features');
+// Route::get('/homepage_features/edit', [HomepageFeaturesController::class, 'edit']);
+
+Route::get('/homepage_features/edit', [HomepageFeaturesController::class, 'edit'])->name('homepage_features.edit');
+Route::post('/homepage_features/update', [HomepageFeaturesController::class, 'update'])->name('homepage_features.update');
 
 
 require __DIR__ . '/auth.php';
