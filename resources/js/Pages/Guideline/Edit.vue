@@ -1,5 +1,6 @@
 <template>
     <div class="bg-main-bg-color p-8 rounded-md shadow-lg">
+        <h1 class="text-xl font-semibold text-main-text-color mb-4">Modifier les prix</h1>
         <form @submit.prevent="submitForm" class="space-y-6">
             <div
                 v-for="(guideline, index) in guidelines"
@@ -58,7 +59,7 @@ export default {
         const guidelines = ref(props.guidelines);
         const seasonYear = ref(props.seasonYear);
 
-        console.log("Initial seasonYear:", props.seasonYear);
+        // console.log("Initial seasonYear:", props.seasonYear);
 
         function submitForm() {
             const updatedGuidelines = guidelines.value.map((guideline) => {
@@ -87,4 +88,3 @@ export default {
 @import "../../../css/style.scss";
 @include stylesMixin;
 </style>
-
