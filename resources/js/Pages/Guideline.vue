@@ -59,7 +59,7 @@
                     </li>
                     <li>
                         Ainsi, le montant de la cotisation pour la saison
-                        {{ seasonYear.season_year }} est de {{ totalPrice.price }} € Pour adhérer, merci de remplir les
+                        {{ seasonYear.season_year }} est de {{ totalPrice }} € Pour adhérer, merci de remplir les
                         documents ci-dessous :
                     </li>
                     <li class="font-bold">Bulletin d’inscription</li>
