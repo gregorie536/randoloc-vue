@@ -82,6 +82,15 @@
             >
                 Mettre à jour
             </button>
+            <!--  -->
+            <button
+                type="button"
+                class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
+                @click="goToDashboard"
+            >
+                Retour au tableau de bord
+            </button>
+            <!--  -->
         </form>
     </div>
 </template>
@@ -116,9 +125,14 @@ export default {
                 homepageFeatures: updatedHomepageFeatures,
             });
         }
-
+        /////////////////////////////
+        function goToDashboard() {
+            Inertia.get("/dashboard");
+        }
+        /////////////////////////////
         return {
             submitForm,
+            goToDashboard,
         };
     },
 };
