@@ -1,6 +1,8 @@
 <template>
     <div class="bg-main-bg-color p-8 rounded-md shadow-lg">
-        <h1 class="text-xl font-semibold text-main-text-color mb-4">Modifier les prix</h1>
+        <h1 class="text-xl font-semibold text-main-text-color mb-4">
+            Modifier les prix
+        </h1>
         <form @submit.prevent="submitForm" class="space-y-6">
             <div
                 v-for="(guideline, index) in guidelines"
@@ -41,6 +43,15 @@
             >
                 Mettre à jour
             </button>
+            <!--  -->
+            <button
+                type="button"
+                class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
+                @click="goToDashboard"
+            >
+                Retour au tableau de bord
+            </button>
+            <!--  -->
         </form>
     </div>
 </template>
@@ -74,17 +85,22 @@ export default {
                 guidelines: updatedGuidelines,
             });
         }
+        /////////////////////////////
+        function goToDashboard() {
+            Inertia.get("/dashboard");
+        }
+        /////////////////////////////
 
         return {
             submitForm,
             seasonYear,
+            goToDashboard,
         };
     },
 };
 </script>
 
 <style lang="scss" scoped>
-
 @import "../../../css/style.scss";
 @include stylesMixin;
 </style>
