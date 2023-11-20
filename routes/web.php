@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\HomepageFeature;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\GuidelineController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GuidelineController;
 use App\Http\Controllers\HomepageFeaturesController;
 
 /*
@@ -28,6 +29,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'homepageFeatures' => HomepageFeature::all()
     ]);
 })->name('home');
 
@@ -93,8 +95,6 @@ Route::get('/guideline/edit', [GuidelineController::class, 'edit']);
 Route::post('/guidelines/update', [GuidelineController::class, 'update']);
 
 // Route pour la page Gallerie Photos
-// Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-// Route::get('/gallery-photos', [GalleryController::class, 'index']);
 Route::get('/gallery-photos', [GalleryController::class, 'index'])->name('galleryPhotos');
 Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
 Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
@@ -103,9 +103,7 @@ Route::put('/gallery/{gallery}', [GalleryController::class, 'update'])->name('ga
 Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
 
 // Route pour la page Info de moment (homepage_features)
-Route::get('/homepage_features', [HomepageFeaturesController::class, 'index'])->name('homepage_features');
-// Route::get('/homepage_features/edit', [HomepageFeaturesController::class, 'edit']);
-
+Route::get('/homepage_features', [HomepageFeaturesController::class, 'index'])->name('home');
 Route::get('/homepage_features/edit', [HomepageFeaturesController::class, 'edit'])->name('homepage_features.edit');
 Route::post('/homepage_features/update', [HomepageFeaturesController::class, 'update'])->name('homepage_features.update');
 

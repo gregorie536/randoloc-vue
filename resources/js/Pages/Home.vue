@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="flex justify-center items-center space">
-            <CardTop />
+            <CardTop :homepageFeatures="homepageFeatures"/>
         </div>
         <div class="flex justify-center items-center">
             <div class="content">
@@ -50,10 +50,11 @@ import CardTop from "@/Components/CardTop.vue";
 import CardBottom from "@/Components/CardBottom.vue";
 export default {
     components: {
-    MainLayout,
-    CardTop,
-    CardBottom
-},
+        MainLayout,
+        CardTop,
+        CardBottom,
+    },
+    props: ['homepageFeatures'],
     name: "Home",
     data() {
         return {
@@ -71,9 +72,7 @@ export default {
     padding: 5%;
 }
 
-    .space {
-        margin-top: 20px;
-    }
-    
-
+.space {
+    margin-top: 20px;
+}
 </style>

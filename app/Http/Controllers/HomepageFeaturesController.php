@@ -12,10 +12,8 @@ class HomepageFeaturesController extends Controller
 {
     public function index()
     {
-        $homepageFeatures = HomepageFeature::all();
-
-        return Inertia::render('HomepageFeature', [
-            'homepageFeatures' => $homepageFeatures
+        return Inertia::render('Home', [
+            'homepageFeatures' => HomepageFeature::all()
         ]);
     }
 

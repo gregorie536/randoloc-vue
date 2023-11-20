@@ -5,7 +5,22 @@
             v-for="(card, index) in cardName"
             :key="index"
         >
-            <a :href="card.link" class="text-blue-500">
+            <!-- @click.prevent pour L'info du moment -->
+            <a
+                v-if="card.name === 'L\'info du moment'"
+                @click.prevent="openModal(card)"
+                class="text-blue-500"
+            >
+                <img :src="card.image" :alt="card.alt" class="w-full" />
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2 text-center">
+                        <span class="main-text-color">{{ card.name }}</span>
+                    </div>
+                    <div class="text-center"></div>
+                </div>
+            </a>
+            <!-- :href pour toutes les autres cartes -->
+            <a v-else :href="card.link" class="text-blue-500">
                 <img :src="card.image" :alt="card.alt" class="w-full" />
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2 text-center">
@@ -16,11 +31,24 @@
             </a>
         </div>
     </div>
+    <modal-home
+        :isModalOpen="isModalOpen"
+        :modalContent="homepageFeatures[0]"
+        @close="closeModal"
+    />
 </template>
 
 <script>
+import ModalHome from "@/Components/ModalHome.vue";
 export default {
     name: "CardTop",
+    props: {
+        homepageFeatures: Array,
+    },
+    components: {
+        ModalHome,
+    },
+
     data() {
         return {
             cardName: [
@@ -31,8 +59,17 @@ export default {
                     alt: "Sorties et séjours",
                 },
                 {
+                    // name: "L'info du moment",
+                    // link: "/sorties-et-sejours",
+                    // image: "/images/page-home/info.jpg",
+                    // alt: "L'info du moment",
                     name: "L'info du moment",
-                    link: "/sorties-et-sejours",
+                    // Ajoutez les propriétés attendues par le modal ici
+                    // title: "Titre de l'info du moment",
+
+                    description: "Description de l'info du moment",
+                    location: "Lieu de l'info du moment",
+                    feature_date: "Date de l'info du moment",
                     image: "/images/page-home/info.jpg",
                     alt: "L'info du moment",
                 },
@@ -43,7 +80,26 @@ export default {
                     alt: "Association",
                 },
             ],
+            isModalOpen: false,
+            modalContent: null,
         };
+    },
+    methods: {
+        openModal(card) {
+            // this.isModalOpen = true;
+            // this.modalContent = card;
+            this.isModalOpen = true;
+            this.modalContent = {
+                title: card.title,
+                description: card.description,
+                location: card.location,
+                feature_date: card.feature_date,
+            };
+        },
+        closeModal() {
+            this.isModalOpen = false;
+            this.modalContent = null;
+        },
     },
 };
 </script>
@@ -58,5 +114,4 @@ export default {
 @media screen and (min-width: 1025px) {
     @include flex-and-rounded-card;
 }
-
 </style>
