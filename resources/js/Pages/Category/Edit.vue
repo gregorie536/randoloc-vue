@@ -1,6 +1,6 @@
 <template>
     <AuthenticatedLayout>
-        <h1>Page modifier un événement</h1>
+        <h1>Page modifier une catégorie</h1>
     </AuthenticatedLayout>
 </template>
 

@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
+use App\Models\Category;
 use Inertia\Inertia;
 
-class EventController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $events = Event::all();
-        // return view('events.index', compact('events'));
-
+        //
     }
 
     /**
@@ -24,7 +22,7 @@ class EventController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Event/Create');
+        return Inertia::render('Category/Create');
     }
 
     /**
@@ -41,7 +39,6 @@ class EventController extends Controller
     public function show(string $id)
     {
         //
-
     }
 
     /**
@@ -50,7 +47,7 @@ class EventController extends Controller
     public function edit(string $id)
     {
         //
-        return Inertia::render('Event/Edit');
+        return Inertia::render('Category/Edit');
     }
 
     /**
@@ -67,11 +64,5 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-
-    public function choice()
-    {
-        return Inertia::render('Event/Choice');
     }
 }

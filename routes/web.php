@@ -11,6 +11,8 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GuidelineController;
 use App\Http\Controllers\HomepageFeaturesController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,5 +109,18 @@ Route::get('/homepage_features', [HomepageFeaturesController::class, 'index'])->
 Route::get('/homepage_features/edit', [HomepageFeaturesController::class, 'edit'])->name('homepage_features.edit');
 Route::post('/homepage_features/update', [HomepageFeaturesController::class, 'update'])->name('homepage_features.update');
 
+// Route pour la page sorties et séjours
+// Routes pour les événements
+Route::get('/events/choice', [EventController::class, 'choice'])->name('events.choice');
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+// Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+// Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+// Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+
+// Route pour les catégories
+// Route::resource('categories', CategoryController::class);
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
 
 require __DIR__ . '/auth.php';

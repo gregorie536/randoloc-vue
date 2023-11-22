@@ -94,6 +94,7 @@ export default {
                 description: card.description,
                 location: card.location,
                 feature_date: card.feature_date,
+                // image: card.image,
             };
         },
         closeModal() {

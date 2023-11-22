@@ -6,6 +6,7 @@
             <p class="modal-description">
                 Description : {{ modalContent.description }}
             </p>
+            
             <p class="modal-location">Lieu : {{ modalContent.location }}</p>
             <p class="modal-feature-date">
                 Date : {{ modalContent.feature_date }}

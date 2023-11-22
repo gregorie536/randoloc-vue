@@ -35,12 +35,12 @@
                             v-model="homepageFeature.image"
                             class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
                         /> -->
-                        <input
+                        <!-- <input
                             type="file"
                             :id="'image' + index"
-                            @change="handleImageUpload"
+                            @change="handleImageChange(homepageFeature, $event)"
                             class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
-                        />
+                        /> -->
                     </div>
 
                     <div class="flex flex-col mb-4">
@@ -116,30 +116,57 @@ export default {
     setup(props) {
         const homepageFeatures = ref(props.homepageFeatures);
 
-        function submitForm() {
-            const updatedHomepageFeatures = homepageFeatures.value.map(
-                (homepageFeature) => {
-                    return {
-                        id: homepageFeature.id,
-                        title: homepageFeature.title,
-                        image: homepageFeature.image,
-                        description: homepageFeature.description,
-                        location: homepageFeature.location,
-                        feature_date: homepageFeature.feature_date,
-                    };
-                }
-            );
+        // Méthode pour gérer le changement d'image
+        function handleImageChange(feature, event) {
+            const file = event.target.files[0];
+            feature.image = file; // Stocker le fichier sélectionné
+        }
 
-            Inertia.post("/homepage_features/update", {
-                homepageFeatures: updatedHomepageFeatures,
+        function submitForm() {
+            const formData = new FormData();
+
+            homepageFeatures.value.forEach((feature, index) => {
+                formData.append(`homepageFeatures[${index}][id]`, feature.id);
+                formData.append(
+                    `homepageFeatures[${index}][title]`,
+                    feature.title
+                );
+                formData.append(
+                    `homepageFeatures[${index}][description]`,
+                    feature.description
+                );
+                formData.append(
+                    `homepageFeatures[${index}][location]`,
+                    feature.location
+                );
+                formData.append(
+                    `homepageFeatures[${index}][feature_date]`,
+                    feature.feature_date
+                );
+
+                // Ajouter l'image s'il y en a une
+                if (feature.image) {
+                    formData.append(
+                        `homepageFeatures[${index}][image]`,
+                        feature.image
+                    );
+                }
+            });
+
+            Inertia.post("/homepage_features/update", formData, {
+                // Ajoutez des options nécessaires pour traiter les fichiers
+                onBefore: (visit) => {
+                    visit.headers["Content-Type"] = "multipart/form-data";
+                },
             });
         }
-        /////////////////////////////
         function goToDashboard() {
             Inertia.get("/dashboard");
         }
-        /////////////////////////////
+
         return {
+            homepageFeatures,
+            handleImageChange,
             submitForm,
             goToDashboard,
         };
