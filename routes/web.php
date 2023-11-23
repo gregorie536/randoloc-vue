@@ -122,5 +122,11 @@ Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('even
 // Route::resource('categories', CategoryController::class);
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
 require __DIR__ . '/auth.php';
+
+// Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+
+// Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+// // Incluez les autres routes CRUD si nécessaire

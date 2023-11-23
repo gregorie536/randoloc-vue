@@ -30,8 +30,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255', // Validation du nom de la catégorie
+        ]);
+
+        $category = new Category();
+        $category->name = $validatedData['name'];
+        $category->user_id = auth()->id();
+        $category->save();
+        
+
+        return redirect()->route('category.create'); // Redirection vers l'index des catégories
     }
+
 
     /**
      * Display the specified resource.
