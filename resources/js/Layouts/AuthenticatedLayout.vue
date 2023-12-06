@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <a
-                        href="/page2"
+                        href="#"
                         class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                     >
                         <i class="fas fa-file-alt mr-2"></i>Association

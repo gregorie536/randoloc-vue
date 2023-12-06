@@ -5,23 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Inertia\Inertia;
+use App\Models\Event;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    // public function index()
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
         return Inertia::render('Category/Create');
     }
 
@@ -31,49 +31,79 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255', // Validation du nom de la catégorie
+            'name' => 'required|string|max:255',
         ]);
 
         $category = new Category();
         $category->name = $validatedData['name'];
         $category->user_id = auth()->id();
         $category->save();
-        
 
-        return redirect()->route('category.create'); // Redirection vers l'index des catégories
+        return redirect()->route('categories.manage');
     }
-
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $categoryEvents = Event::where('category_id', $id)->get();
+
+        return Inertia::render('CategoryShow', [
+            'category' => $category,
+            'categoryEvents' => $categoryEvents
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
-        return Inertia::render('Category/Edit');
+        $category = Category::findOrFail($id);
+        return Inertia::render('Category/Edit', ['category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->name = $validatedData['name'];
+        $category->save();
+
+        return redirect()->route('categories.manage');
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $category = Category::with('events')->findOrFail($id);
+
+        if ($category->events()->count() > 0) {
+            return redirect()->route('categories.manage')->with('error', 'Cette catégorie ne peut pas être supprimée car elle contient des événements.');
+        }
+
+        $category->delete();
+
+        return redirect()->route('categories.manage')->with('successMessage', 'Catégorie supprimée avec succès.');
+    }
+
+    public function manage()
+    {
+        $categories = Category::all();
+        return Inertia::render('Category/Manage', ['categories' => $categories]);
     }
 }

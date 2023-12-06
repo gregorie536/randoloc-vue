@@ -4,8 +4,6 @@ use Inertia\Inertia;
 use App\Models\HomepageFeature;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-
-
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
@@ -35,17 +33,11 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
         'successMessage' => session('successMessage')
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,38 +45,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route pour la page evenements
-Route::get('/event', function () {
-    return Inertia::render('Event');
-})->name('event');
-
-// Route pour la page de la galerie photos
-    // Route::get('/gallery-photos', function () {
-    //     return Inertia::render('GalleryPhotos');
-    // })->name('galleryPhotos');
-
 // Route pour la page organisation
 Route::get('/organization', function () {
     return Inertia::render('Organization');
 })->name('organization');
 
-// Route pour la page règlement et organisation
-// Route::get('/guideline', function () {
-//     return Inertia::render('Guideline');
-// })->name('guideline');
-
-// Route pour la page contact
-// Route::get('/contact', function () {
-//     return Inertia::render('Contact');
-// })->name('contact');
-
 // Route pour les mentions légales
 Route::get('/legal-notice', function () {
     return Inertia::render('LegalNotice');
 })->name('legalNotice');
-
-
-/////////////////////////////TESTS/////////////////////////////////////
 
 // Route pour la page contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
@@ -109,24 +78,24 @@ Route::get('/homepage_features', [HomepageFeaturesController::class, 'index'])->
 Route::get('/homepage_features/edit', [HomepageFeaturesController::class, 'edit'])->name('homepage_features.edit');
 Route::post('/homepage_features/update', [HomepageFeaturesController::class, 'update'])->name('homepage_features.update');
 
-// Route pour la page sorties et séjours
 // Routes pour les événements
 Route::get('/events/choice', [EventController::class, 'choice'])->name('events.choice');
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-// Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
 Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
-// Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
-// Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+Route::get('/events/manage', [EventController::class, 'manage'])->name('events.manage');
+Route::get('/event', [EventController::class, 'index'])->name('event');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('eventDetail');
 
 // Route pour les catégories
-// Route::resource('categories', CategoryController::class);
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories/manage', [CategoryController::class, 'manage'])->name('categories.manage');
+Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categoryDetail');
 
 require __DIR__ . '/auth.php';
-
-// Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-
-// Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-// // Incluez les autres routes CRUD si nécessaire
