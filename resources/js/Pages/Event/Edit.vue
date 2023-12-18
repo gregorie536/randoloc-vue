@@ -2,7 +2,7 @@
     <AuthenticatedLayout>
         <div class="bg-main-bg-color p-8 rounded-md shadow-lg">
             <h1 class="text-xl font-semibold text-main-text-color mb-4">
-                Modifier un Événement
+                Modifier un événement
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
                 <div class="border-b-2 border-aliceblue pb-6 mb-6">

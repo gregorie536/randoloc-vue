@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class GalleryController extends Controller
 {
@@ -36,7 +37,7 @@ class GalleryController extends Controller
             'comment' => $request->input('comment')
         ]);
 
-        return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie !');
+        return redirect()->route('gallery.choice')->with('successMessage', 'Mise à jour réussie !');
     }
 
     // Formulaire pour éditer une image existante
@@ -65,7 +66,7 @@ class GalleryController extends Controller
         $gallery->comment = $request->input('comment');
         $gallery->save();
 
-        return redirect()->route('gallery.index')->with('message', 'Image mise à jour avec succès!');
+        return redirect()->route('gallery.choice')->with('message', 'Image mise à jour avec succès!');
     }
 
     // Supprimer l'image de la base de données
@@ -74,6 +75,19 @@ class GalleryController extends Controller
         Storage::disk('public')->delete($gallery->image);
         $gallery->delete();
 
-        return redirect()->route('gallery.index')->with('message', 'Image supprimée avec succès!');
+        return redirect()->route('gallery.choice')->with('message', 'Image supprimée avec succès!');
+    }
+
+    public function choice()
+    {
+        return Inertia::render('Gallery/Choice');
+    }
+
+    public function manage()
+    {
+        // Logique pour afficher la page de gestion
+        // Par exemple, récupérer toutes les images pour les gérer
+        $galleries = Gallery::all();
+        return inertia('Gallery/Manage', ['galleries' => $galleries]);
     }
 }

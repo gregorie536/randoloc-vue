@@ -2,7 +2,7 @@
     <AuthenticatedLayout>
         <div class="bg-main-bg-color p-8 rounded-md shadow-lg">
             <h1 class="text-xl font-semibold text-main-text-color mb-4">
-                Modifier une Catégorie
+                Modifier une catégorie
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
                 <div class="border-b-2 border-aliceblue pb-6 mb-6">
@@ -34,16 +34,15 @@ export default {
         AuthenticatedLayout,
     },
     props: {
-        category: Object, // Recevoir les données de la catégorie à modifier
+        category: Object,
     },
     setup(props) {
         const form = ref({
             name: props.category.name || '',
-            // Ajouter d'autres champs si nécessaire
         });
 
         function submitForm() {
-            Inertia.put(`/categories/${props.category.id}`, form.value); // Assurez-vous que cette URL est correcte
+            Inertia.put(`/categories/${props.category.id}`, form.value);
         }
 
         function goToDashboard() {

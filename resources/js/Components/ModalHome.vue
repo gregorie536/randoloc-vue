@@ -2,19 +2,24 @@
     <div v-if="isModalOpen" class="modal-overlay">
         <div class="modal-container">
             <h2 class="modal-title">{{ modalContent.title }}</h2>
-            <!-- <img :src="modalContent.image" alt="Image" class="modal-image"> -->
+            <!-- Afficher l'image si elle existe -->
+            <img v-if="modalContent.image" :src="imageUrl(modalContent.image)" alt="Image" class="modal-image">
+            <!-- Description -->
             <p class="modal-description">
                 Description : {{ modalContent.description }}
             </p>
-            
+            <!-- Lieu -->
             <p class="modal-location">Lieu : {{ modalContent.location }}</p>
+            <!-- Date -->
             <p class="modal-feature-date">
                 Date : {{ modalContent.feature_date }}
             </p>
+            <!-- Bouton de fermeture -->
             <button @click="closeModal" class="modal-close-btn">Fermer</button>
         </div>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -26,12 +31,17 @@ export default {
         },
         modalContent: {
             type: Object,
+            default: () => ({}),
         },
     },
     methods: {
         closeModal() {
             this.$emit("close");
         },
+        imageUrl(imagePath) {
+            // return `http://127.0.0.1:8000/storage/${imagePath}`;
+            return `${window.location.origin}/storage/${imagePath}`;
+        }
     },
 };
 </script>
@@ -65,5 +75,9 @@ export default {
     &:hover {
         background-color: darken($nav-bg-color, 10%);
     }
+}
+
+.modal-image {
+    @apply max-w-full h-auto mb-4;
 }
 </style>

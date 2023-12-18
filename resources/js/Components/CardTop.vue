@@ -95,6 +95,7 @@ export default {
                 location: card.location,
                 feature_date: card.feature_date,
                 // image: card.image,
+                image: '/storage/' + card.image,
             };
         },
         closeModal() {

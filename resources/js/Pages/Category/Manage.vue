@@ -2,7 +2,7 @@
     <AuthenticatedLayout>
         <div class="bg-main-bg-color p-4 md:p-8 rounded-md shadow-lg">
             <h1 class="text-xl font-semibold text-main-text-color mb-4">
-                Gestion des Catégories
+                Gestion des catégories
             </h1>
             <div class="space-y-4">
                 <div

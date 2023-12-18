@@ -37,4 +37,9 @@ class GuidelineController extends Controller
         }
         return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie !');
     }
+
+    public function choice()
+    {
+        return Inertia::render('Guideline/Choice');
+    }
 }

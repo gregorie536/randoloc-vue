@@ -9,7 +9,7 @@
 
             <div class="bg-main-bg-color rounded shadow-lg p-6">
                 <h3 class="text-xl font-bold mb-4 text-main-text-color">
-                    Événements de cette Catégorie
+                    Événements de cette catégorie
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div

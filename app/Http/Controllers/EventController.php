@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use Inertia\Inertia;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -29,7 +30,8 @@ class EventController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return Inertia::render('Event/Create', ['categories' => $categories]);
+        // return Inertia::render('Event/Create', ['categories' => $categories]);
+        return inertia('Event/Create', ['categories' => $categories]);
     }
 
     /**
@@ -143,3 +145,4 @@ class EventController extends Controller
         return Inertia::render('Event/Manage', ['events' => $events]);
     }
 }
+

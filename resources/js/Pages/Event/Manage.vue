@@ -2,7 +2,7 @@
     <AuthenticatedLayout>
         <div class="bg-main-bg-color p-4 md:p-8 rounded-md shadow-lg">
             <h1 class="text-xl font-semibold text-main-text-color mb-4">
-                Gestion des Événements
+                Gestion des événements
             </h1>
             <div class="space-y-4">
                 <div v-for="event in events" :key="event.id" class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6">

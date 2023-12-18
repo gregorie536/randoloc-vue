@@ -59,11 +59,14 @@ Route::get('/legal-notice', function () {
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/contact/edit', [ContactController::class, 'edit'])->name('contact.edit');
 Route::post('/contacts/update', [ContactController::class, 'update'])->name('contacts.update');
+Route::get('/contact/choice', [ContactController::class, 'choice'])->name('contact.choice');
 
 // Route pour la page règlement et organisation (Guidelines)
 Route::get('/guideline', [GuidelineController::class, 'index'])->name('guideline');
-Route::get('/guideline/edit', [GuidelineController::class, 'edit']);
+Route::get('/guideline/edit', [GuidelineController::class, 'edit'])->name('guideline.edit');
+
 Route::post('/guidelines/update', [GuidelineController::class, 'update']);
+Route::get('/guideline/choice', [GuidelineController::class, 'choice'])->name('guideline.choice');
 
 // Route pour la page Gallerie Photos
 Route::get('/gallery-photos', [GalleryController::class, 'index'])->name('galleryPhotos');
@@ -72,11 +75,14 @@ Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.stor
 Route::get('/gallery/{gallery}/edit', [GalleryController::class, 'edit'])->name('gallery.edit');
 Route::put('/gallery/{gallery}', [GalleryController::class, 'update'])->name('gallery.update');
 Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+Route::get('/gallery/manage', [GalleryController::class, 'manage'])->name('gallery.manage');
+Route::get('/gallery/choice', [GalleryController::class, 'choice'])->name('gallery.choice');
 
 // Route pour la page Info de moment (homepage_features)
 Route::get('/homepage_features', [HomepageFeaturesController::class, 'index'])->name('home');
 Route::get('/homepage_features/edit', [HomepageFeaturesController::class, 'edit'])->name('homepage_features.edit');
 Route::post('/homepage_features/update', [HomepageFeaturesController::class, 'update'])->name('homepage_features.update');
+Route::get('/homepage_features/choice', [HomepageFeaturesController::class, 'choice'])->name('homepage_features.choice');
 
 // Routes pour les événements
 Route::get('/events/choice', [EventController::class, 'choice'])->name('events.choice');

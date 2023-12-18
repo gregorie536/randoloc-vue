@@ -1,24 +1,22 @@
 <template>
     <div class="min-h-screen flex">
-        <!-- Barre latérale -->
         <aside class="w-64 bg-white shadow-md">
             <ul class="space-y-2 p-4">
                 <li>
-                    <a
-                        href="/events/choice"
+                    <InertiaLink
+                        :href="route('events.choice')"
                         class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                     >
-                        <i class="fas fa-folder mr-2"></i>Sorties et séjours
-                    </a>
+                        <i class="mr-2"></i>Sorties et séjours
+                    </InertiaLink>
                 </li>
-
                 <li>
-                    <a
-                        href="/homepage_features/edit"
+                    <InertiaLink
+                        :href="route('homepage_features.choice')"
                         class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                     >
-                        <i class="fas fa-file-alt mr-2"></i>L'info du moment
-                    </a>
+                        <i class="mr-2"></i>L'info du moment
+                    </InertiaLink>
                 </li>
                 <li>
                     <a
@@ -29,29 +27,28 @@
                     </a>
                 </li>
                 <li>
-                    <a
-                        href="/guideline/edit"
+                    <InertiaLink
+                        :href="route('guideline.choice')"
                         class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                     >
-                        <i class="fas fa-file-alt mr-2"></i>Règles et
-                        organisation
-                    </a>
+                        <i class="mr-2"></i>Règles et organisation
+                    </InertiaLink>
                 </li>
                 <li>
-                    <a
-                        href="/gallery/create"
+                    <InertiaLink
+                        :href="route('gallery.choice')"
                         class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                     >
-                        <i class="fas fa-file-alt mr-2"></i>Galerie photos
-                    </a>
+                        <i class="mr-2"></i>Galerie photos
+                    </InertiaLink>
                 </li>
                 <li>
-                    <a
-                        href="/contact/edit"
+                    <InertiaLink
+                        :href="route('contact.choice')"
                         class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                     >
-                        <i class="fas fa-file-alt mr-2"></i>Contact
-                    </a>
+                        <i class="mr-2"></i>Contact
+                    </InertiaLink>
                 </li>
             </ul>
         </aside>
@@ -171,10 +168,9 @@ import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
+import { InertiaLink } from "@inertiajs/inertia-vue3";
 
 const showingNavigationDropdown = ref(false);
 </script>
 
-<style>
-/* styles supplémentaires si nécessaires */
-</style>
+<style></style>
