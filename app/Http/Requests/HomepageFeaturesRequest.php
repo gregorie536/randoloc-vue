@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContactRequest extends FormRequest
+class HomepageFeaturesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,12 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone_number' => 'required|digits:10',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'homepageFeatures.*.id' => 'required|exists:homepage_features,id',
+            'homepageFeatures.*.title' => 'required|string|max:255',
+            'homepageFeatures.*.description' => 'required|string',
+            'homepageFeatures.*.image' => 'sometimes|file|image|max:2048',
+            'homepageFeatures.*.location' => 'required|string|max:255',
+            'homepageFeatures.*.feature_date' => 'required|date',
         ];
     }
 }

@@ -77,10 +77,10 @@
                 <!--  -->
                 <button
                     type="button"
-                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
+                    class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none"
                     @click="goToDashboard"
                 >
-                    Retour au tableau de bord
+                    Annuler
                 </button>
                 <!--  -->
             </form>

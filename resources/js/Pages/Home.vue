@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="flex justify-center items-center space">
-            <CardTop :homepageFeatures="homepageFeatures"/>
+            <CardTop :homepageFeatures="homepageFeatures" :isModalOpen="isModalOpen"/>/>
         </div>
         <div class="flex justify-center items-center">
             <div class="content">
@@ -59,7 +59,12 @@ export default {
     data() {
         return {
             titre: "Les marcheurs du pays de Locminé",
+            isModalOpen: false,
         };
+    },
+    mounted() {
+        // Ouvrir le modal automatiquement au chargement de la page
+        this.isModalOpen = true;
     },
 };
 </script>

@@ -73,7 +73,7 @@
                         class="rounded border-gray-400 focus:border-blue-500"
                     />
                 </div>
-                <div>Active: {{ form.active }}</div>
+                <!-- <div>Active: {{ form.active }}</div> -->
 
 
                 <div class="flex justify-end">

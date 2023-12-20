@@ -84,6 +84,13 @@ export default {
             modalContent: null,
         };
     },
+    //
+    mounted() {
+        if (this.homepageFeatures && this.homepageFeatures.length > 0) {
+            this.openModal(this.homepageFeatures[0]);
+        }
+    },
+    //
     methods: {
         openModal(card) {
             // this.isModalOpen = true;
@@ -95,7 +102,7 @@ export default {
                 location: card.location,
                 feature_date: card.feature_date,
                 // image: card.image,
-                image: '/storage/' + card.image,
+                image: "/storage/" + card.image,
             };
         },
         closeModal() {

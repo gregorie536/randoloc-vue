@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Inertia\Inertia;
@@ -30,7 +31,6 @@ class EventController extends Controller
     public function create()
     {
         $categories = Category::all();
-        // return Inertia::render('Event/Create', ['categories' => $categories]);
         return inertia('Event/Create', ['categories' => $categories]);
     }
 
@@ -40,30 +40,27 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'supervisor' => 'nullable|string',
-            'day' => 'nullable|string',
-            'date' => 'nullable|date',
-            'number_km' => 'nullable|numeric',
-            'location' => 'required|string',
-            'active' => 'required|boolean',
-            'category_id' => 'required|exists:categories,id',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'supervisor' => 'nullable|string',
+        //     'day' => 'nullable|string',
+        //     'date' => 'nullable|date',
+        //     'number_km' => 'nullable|numeric',
+        //     'location' => 'required|string',
+        //     'active' => 'required|boolean',
+        //     'category_id' => 'required|exists:categories,id',
+        // ]);
 
-        // Créer une nouvelle instance de l'événement
-        $event = new Event($validatedData);
+        // $event = new Event($validatedData);
 
-        // Définir user_id comme l'ID de l'utilisateur connecté
+        $event = new Event($request->validated());
         $event->user_id = auth()->id();
 
-        // Enregistrer l'événement
         $event->save();
 
-        // Rediriger vers une page appropriée avec un message de succès
         return redirect()->route('events.manage')->with('success', 'Événement créé avec succès.');
     }
 
@@ -100,22 +97,23 @@ class EventController extends Controller
      * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'supervisor' => 'nullable|string',
-            'day' => 'nullable|string',
-            'date' => 'nullable|date',
-            'number_km' => 'nullable|numeric',
-            'location' => 'required|string',
-            'active' => 'required|boolean',
-            'category_id' => 'required|exists:categories,id',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'supervisor' => 'nullable|string',
+        //     'day' => 'nullable|string',
+        //     'date' => 'nullable|date',
+        //     'number_km' => 'nullable|numeric',
+        //     'location' => 'required|string',
+        //     'active' => 'required|boolean',
+        //     'category_id' => 'required|exists:categories,id',
+        // ]);
 
         $event = Event::findOrFail($id);
-        $event->update($validatedData);
+        // $event->update($validatedData);
+        $event->update($request->validated());
 
         return redirect()->route('events.manage')->with('success', 'Événement mis à jour avec succès.');
     }
@@ -145,4 +143,3 @@ class EventController extends Controller
         return Inertia::render('Event/Manage', ['events' => $events]);
     }
 }
-

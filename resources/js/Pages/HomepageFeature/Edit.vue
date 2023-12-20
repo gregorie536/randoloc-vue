@@ -26,7 +26,7 @@
                                class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color" />
                         <!-- Afficher un aperçu de l'image si disponible -->
                         <div v-if="homepageFeature.imagePreview" class="mt-2">
-                            <img :src="homepageFeature.imagePreview" class="max-w-xs h-auto" />
+                            <img :src="homepageFeature.imagePreview" class="max-widht" />
                         </div>
                     </div>
 
@@ -61,8 +61,8 @@
                     </button>
                     <button type="button"
                             @click="goToDashboard"
-                            class="bg-gray-500 text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
-                        Retour au tableau de bord
+                            class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none">
+                        Annuler
                     </button>
                 </div>
             </form>
@@ -135,5 +135,8 @@ export default {
 <style lang="scss" scoped>
 @import "../../../css/style.scss";
 @include stylesMixin;
+.max-widht {
+    max-width: 10rem;
+}
 </style>
 

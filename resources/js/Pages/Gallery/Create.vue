@@ -16,7 +16,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="flex flex-col mb-4">
                     <label for="image" class="text-main-text-color mb-1"
                         >Image :</label
@@ -25,11 +24,13 @@
                         type="file"
                         id="image"
                         ref="image"
-                        v-on:change="handleImageUpload"
+                        @change="handleImageUpload"
                         class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
                     />
+                    <div v-if="imagePreview" class="mt-2">
+                        <img :src="imagePreview" class="max-width" />
+                    </div>
                 </div>
-
                 <div class="flex flex-col mb-4">
                     <label for="comment" class="text-main-text-color mb-1"
                         >Commentaire :</label
@@ -47,6 +48,13 @@
                 >
                     Ajouter
                 </button>
+                <button
+                    type="button"
+                    class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none"
+                    @click="goToDashboard"
+                >
+                    Annuler
+                </button>
             </form>
         </div>
     </AuthenticatedLayout>
@@ -54,17 +62,24 @@
 
 <script>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
 export default {
     data() {
         return {
             image: null,
+            imagePreview: null,
             comment: "",
             errors: [],
         };
     },
+
     methods: {
-        handleImageUpload() {
-            this.image = this.$refs.image.files[0];
+        handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                this.image = file;
+                this.imagePreview = URL.createObjectURL(file);
+            }
         },
         async submitForm() {
             const formData = new FormData();
@@ -79,6 +94,9 @@ export default {
                 }
             }
         },
+        goToDashboard() {
+            Inertia.get("/dashboard");
+        },
     },
     components: {
         AuthenticatedLayout,
@@ -89,4 +107,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../../css/style.scss";
 @include stylesMixin;
+.max-width {
+    max-width: 10rem;
+}
 </style>

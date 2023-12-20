@@ -10,6 +10,7 @@
                 class="max-w-sm rounded-card overflow-hidden"
                 v-for="image in galleries"
                 :key="image.id"
+                @click="selectedImage = image"
             >
                 <div class="image-container">
                     <img
@@ -22,15 +23,18 @@
                 </div>
             </div>
         </div>
+        <ImageModal :image="selectedImage" @close="selectedImage = null" />
     </MainLayout>
 </template>
 
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import ImageModal from "@/Components/ImageModal.vue";
 
 export default {
     components: {
         MainLayout,
+        ImageModal,
     },
     name: "GalleryPhotos",
     props: {
@@ -39,6 +43,7 @@ export default {
     data() {
         return {
             titre: "Galerie photos",
+            selectedImage: null,
         };
     },
 };

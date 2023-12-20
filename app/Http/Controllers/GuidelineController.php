@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guideline;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Http\Requests\GuidelineRequest;
 
 class GuidelineController extends Controller
 {
@@ -29,7 +30,7 @@ class GuidelineController extends Controller
         return Inertia::render('Guideline/Edit', ['guidelines' => $guidelines, 'seasonYear' => $guidelines->last()->season_year]);
     }
 
-    public function update(Request $request)
+    public function update(GuidelineRequest $request)
     {
         foreach ($request->guidelines as $updatedGuideline) {
             $guideline = Guideline::find($updatedGuideline['id']);

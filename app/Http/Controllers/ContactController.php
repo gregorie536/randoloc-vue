@@ -28,7 +28,7 @@ class ContactController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(ContactRequest $request)
     {
         foreach ($request->contacts as $updatedContact) {
             $contact = Contact::find($updatedContact['id']);
@@ -37,7 +37,6 @@ class ContactController extends Controller
 
         return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie !');
     }
-
 
     public function choice()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Inertia\Inertia;
@@ -9,14 +10,6 @@ use App\Models\Event;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     //
-    // }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -28,14 +21,14 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string|max:255',
+        // ]);
 
         $category = new Category();
-        $category->name = $validatedData['name'];
+        $category->name = $request->name;
         $category->user_id = auth()->id();
         $category->save();
 
@@ -69,14 +62,15 @@ class CategoryController extends Controller
      * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string|max:255',
+        // ]);
 
         $category = Category::findOrFail($id);
-        $category->name = $validatedData['name'];
+        // $category->name = $validatedData['name'];
+        $category->name = $request->name;
         $category->save();
 
         return redirect()->route('categories.manage');
