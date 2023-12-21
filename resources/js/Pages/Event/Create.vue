@@ -5,6 +5,7 @@
                 Créer un événement
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
+                <ValidationErrors :errors="errors" />
                 <div
                     v-for="(field, index) in textFields"
                     :key="index"
@@ -75,7 +76,6 @@
                 </div>
                 <!-- <div>Active: {{ form.active }}</div> -->
 
-
                 <div class="flex justify-end">
                     <button
                         type="submit"
@@ -100,13 +100,16 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
     components: {
         AuthenticatedLayout,
+        ValidationErrors,
     },
     props: {
         categories: Array,
+        errors: Object,
     },
     setup() {
         const textFields = [
@@ -123,7 +126,7 @@ export default {
                 type: "text",
             },
             {
-                label: "Superviseur",
+                label: "Meneur",
                 model: "supervisor",
                 id: "eventSupervisor",
                 type: "text",

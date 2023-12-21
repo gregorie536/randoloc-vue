@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Superviseur</h3>
+                    <h3 class="text-lg font-semibold">Meneur</h3>
                     <p>{{ event.supervisor }}</p>
                 </div>
 

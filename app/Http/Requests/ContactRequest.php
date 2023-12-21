@@ -27,4 +27,18 @@ class ContactRequest extends FormRequest
             'email' => 'required|email|max:255',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'phone_number.required' => 'Le numéro de téléphone est obligatoire.',
+            'phone_number.digits' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.',
+            'name.required' => 'Le nom est obligatoire.',
+            'name.string' => 'Le nom doit être une chaîne de caractères.',
+            'name.max' => 'Le nom ne doit pas dépasser 255 caractères.',
+            'email.required' => 'L\'adresse e-mail est obligatoire.',
+            'email.email' => 'L\'adresse e-mail n\'est pas valide.',
+            'email.max' => 'L\'adresse e-mail ne doit pas dépasser 255 caractères.'
+        ];
+    }
 }

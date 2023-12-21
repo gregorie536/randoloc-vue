@@ -5,6 +5,7 @@
                 Créer une Catégorie
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
+                <ValidationErrors :errors="errors" />
                 <div class="border-b-2 border-aliceblue pb-6 mb-6">
                     <div class="flex flex-col mb-4">
                         <label
@@ -44,10 +45,15 @@
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
     components: {
         AuthenticatedLayout,
+        ValidationErrors,
+    },
+    props: {
+        errors: Object,
     },
     setup() {
         const form = ref({

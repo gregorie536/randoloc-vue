@@ -23,7 +23,18 @@ class GalleryRequest extends FormRequest
     {
         return [
             'image' => 'sometimes|required|image|max:2048',
-            'comment' => 'nullable|string'
+            'comment' => 'required|string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'image.required' => 'L\'image est obligatoire.',
+            'image.image' => 'L\'image doit être une image.',
+            'image.max' => 'L\'image ne doit pas dépasser 2 Mo.',
+            'comment.string' => 'Le commentaire doit être une chaîne de caractères.',
+            'comment.required' => 'Le commentaire est obligatoire.'
         ];
     }
 }

@@ -22,7 +22,15 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:200',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Le nom de la catégorie est obligatoire.',
+            'name.max' => 'Le nom de la catégorie ne doit pas dépasser 200 caractères.'
         ];
     }
 }

@@ -22,9 +22,18 @@ class GuidelineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'guidelines.*.id' => 'required|exists:guidelines,id',
-            'guidelines.*.price' => 'required|numeric',
-            'guidelines.*.type' => 'required|string',
+            'price' => 'required|numeric',
+            'season_year' => 'required|numeric',
+            // 'guidelines.type' => 'required|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'price.required' => 'Le prix est obligatoire.',
+            'price.numeric' => 'Le prix doit être un nombre.',
+            'season_year.required' => 'L\'année de la saison est obligatoire.',
         ];
     }
 }

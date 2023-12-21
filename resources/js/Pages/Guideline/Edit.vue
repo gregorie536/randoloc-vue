@@ -5,6 +5,7 @@
                 Modifier les prix
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
+                <ValidationErrors :errors="errors" />
                 <div
                     v-for="(guideline, index) in guidelines"
                     :key="guideline.id"
@@ -62,11 +63,13 @@
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
     props: {
         guidelines: Array,
         seasonYear: Date,
+        errors: Object,
     },
 
     setup(props) {
@@ -102,6 +105,7 @@ export default {
     },
     components: {
         AuthenticatedLayout,
+        ValidationErrors,
     },
 };
 </script>

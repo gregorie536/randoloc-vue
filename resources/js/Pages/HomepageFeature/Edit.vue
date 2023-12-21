@@ -6,6 +6,7 @@
             </h1>
 
             <form @submit.prevent="submitForm" class="space-y-6">
+                <ValidationErrors :errors="errors" />
                 <div
                     v-for="(homepageFeature, index) in homepageFeatures"
                     :key="homepageFeature.id"
@@ -74,13 +75,16 @@
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
     components: {
         AuthenticatedLayout,
+        ValidationErrors,
     },
     props: {
         homepageFeatures: Array,
+        errors: Object,
     },
     setup(props) {
         const homepageFeatures = ref(props.homepageFeatures.map(feature => ({

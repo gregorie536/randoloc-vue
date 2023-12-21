@@ -6,6 +6,7 @@
             </h1>
 
             <form @submit.prevent="submitForm" class="space-y-6">
+                <ValidationErrors :errors="errors" />
                 <div
                     v-if="errors.length"
                     class="border-b-2 border-aliceblue pb-6 mb-6"
@@ -63,6 +64,7 @@
 <script>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Inertia } from "@inertiajs/inertia";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 export default {
     data() {
         return {
@@ -100,6 +102,10 @@ export default {
     },
     components: {
         AuthenticatedLayout,
+        ValidationErrors,
+    },
+    props: {
+        errors: Object,
     },
 };
 </script>

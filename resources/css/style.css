@@ -66,6 +66,14 @@ button {
   margin-right: 10px;
 }
 
+.error {
+  color: #ff6600;
+  font-size: larger;
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+}
+
 /****************************************************
                       MIXIN
 *****************************************************/

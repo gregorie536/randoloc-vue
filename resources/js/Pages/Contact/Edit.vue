@@ -5,6 +5,7 @@
                 Modifier les contacts
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
+                <ValidationErrors :errors="errors" />
                 <div
                     v-for="(contact, index) in contacts"
                     :key="contact.id"
@@ -92,10 +93,12 @@
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
     props: {
         contacts: Array,
+        errors: Object,
     },
 
     setup(props) {

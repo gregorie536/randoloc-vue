@@ -5,6 +5,7 @@
                 Modifier un événement
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
+                <ValidationErrors :errors="errors" />
                 <div class="border-b-2 border-aliceblue pb-6 mb-6">
                     <div
                         v-for="(field, index) in formFields"
@@ -103,14 +104,17 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
     components: {
         AuthenticatedLayout,
+        ValidationErrors,
     },
     props: {
         event: Object,
         categories: Array,
+        errors: Object,
     },
     setup(props) {
         const formFields = [
@@ -127,7 +131,7 @@ export default {
                 type: "text",
             },
             {
-                label: "Superviseur",
+                label: "Meneur",
                 model: "supervisor",
                 id: "eventSupervisor",
                 type: "text",
