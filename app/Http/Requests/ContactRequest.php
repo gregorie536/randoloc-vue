@@ -33,9 +33,8 @@ class ContactRequest extends FormRequest
     {
         return [
             'contact.*.phone_number.required' => 'Le numéro de téléphone est obligatoire.',
-            'contact.*.phone_number.digits' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.',
+            'contact.*.phone_number.digits' => 'Le numéro de téléphone doit contenir 10 chiffres.',
             'contact.*.firstname.required' => 'Le nom est obligatoire.',
-            'contact.*.firstname.string' => 'Le nom doit être une chaîne de caractères.',
             'contact.*.firstname.max' => 'Le nom ne doit pas dépasser 200 caractères.',
             'contact.*.email.required' => 'L\'adresse e-mail est obligatoire.',
             'contact.*.email.email' => 'L\'adresse e-mail n\'est pas valide.',
@@ -43,7 +42,6 @@ class ContactRequest extends FormRequest
 
 
             'contact.*.lastname.required' => 'Le prénom est obligatoire.',
-            'contact.*.lastname.string' => 'Le prénom doit être une chaîne de caractères.',
             'contact.*.lastname.max' => 'Le prénom ne doit pas dépasser 200 caractères.',
         ];
     }
