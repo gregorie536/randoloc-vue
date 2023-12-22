@@ -6,6 +6,7 @@
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
                 <ValidationErrors :errors="errors" />
+                <div class="border-b-2 border-aliceblue pb-6 mb-6">
                 <div
                     v-for="(field, index) in textFields"
                     :key="index"
@@ -21,7 +22,7 @@
                         class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
                     />
                 </div>
-
+            </div>
                 <div class="flex flex-col mb-4">
                     <label for="eventDay" class="text-main-text-color mb-1"
                         >Jour de la semaine :</label
@@ -140,7 +141,7 @@ export default {
                 type: "number",
             },
             {
-                label: "Localisation",
+                label: "Lieu",
                 model: "location",
                 id: "eventLocation",
                 type: "text",

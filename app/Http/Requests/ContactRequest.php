@@ -22,23 +22,29 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone_number' => 'required|digits:10',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'contact.*.phone_number' => 'required|digits:10',
+            'contact.*.firstname' => 'required|string|max:200',
+            'contact.*.lastname' => 'required|string|max:200',
+            'contact.*.email' => 'required|email|max:200',
         ];
     }
 
     public function messages()
     {
         return [
-            'phone_number.required' => 'Le numéro de téléphone est obligatoire.',
-            'phone_number.digits' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.',
-            'name.required' => 'Le nom est obligatoire.',
-            'name.string' => 'Le nom doit être une chaîne de caractères.',
-            'name.max' => 'Le nom ne doit pas dépasser 255 caractères.',
-            'email.required' => 'L\'adresse e-mail est obligatoire.',
-            'email.email' => 'L\'adresse e-mail n\'est pas valide.',
-            'email.max' => 'L\'adresse e-mail ne doit pas dépasser 255 caractères.'
+            'contact.*.phone_number.required' => 'Le numéro de téléphone est obligatoire.',
+            'contact.*.phone_number.digits' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.',
+            'contact.*.firstname.required' => 'Le nom est obligatoire.',
+            'contact.*.firstname.string' => 'Le nom doit être une chaîne de caractères.',
+            'contact.*.firstname.max' => 'Le nom ne doit pas dépasser 200 caractères.',
+            'contact.*.email.required' => 'L\'adresse e-mail est obligatoire.',
+            'contact.*.email.email' => 'L\'adresse e-mail n\'est pas valide.',
+            'contact.*.email.max' => 'L\'adresse e-mail ne doit pas dépasser 200 caractères.',
+
+
+            'contact.*.lastname.required' => 'Le prénom est obligatoire.',
+            'contact.*.lastname.string' => 'Le prénom doit être une chaîne de caractères.',
+            'contact.*.lastname.max' => 'Le prénom ne doit pas dépasser 200 caractères.',
         ];
     }
 }

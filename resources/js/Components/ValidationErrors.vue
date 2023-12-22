@@ -1,17 +1,10 @@
 <template>
-    <div v-if="Object.keys(errors).length > 0" class="error-messages">
+    <div v-if="Object.keys(processedErrors).length > 0" class="error-messages">
         <ul>
-            <li v-for="(messages, field) in errors" :key="field">
-                <strong v-if="humanizeFieldName(field)"
-                    >{{ humanizeFieldName(field) }} :</strong
-                >
+            <li v-for="(messages, field) in processedErrors" :key="field">
+                <strong v-if="humanizeFieldName(field)">{{ humanizeFieldName(field) }} :</strong>
                 <ul>
-                    <li
-                        v-for="message in Array.isArray(messages)
-                            ? messages
-                            : [messages]"
-                        :key="message"
-                    >
+                    <li v-for="message in Array.isArray(messages) ? messages : [messages]" :key="message">
                         {{ message }}
                     </li>
                 </ul>
@@ -19,6 +12,7 @@
         </ul>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -28,6 +22,63 @@ export default {
             default: () => ({}),
         },
     },
+    computed: {
+    processedErrors() {
+        let newErrors = {};
+        let foundGuidelinePriceError = false;
+        let foundGuidelineSeasonYearError = false;
+        let foundHomepageFeatureTitleError = false;
+        let foundHomepageFeatureDescriptionError = false;
+        let foundHomepageFeatureImageError = false;
+        let foundHomepageFeatureLocationError = false;
+        let foundHomepageFeatureDateError = false;
+
+        for (let key in this.errors) {
+            if (key.startsWith('guidelines.') && key.endsWith('.price')) {
+                if (!foundGuidelinePriceError) {
+                    newErrors['Prix'] = this.errors[key];
+                    foundGuidelinePriceError = true;
+                }
+            } else if (key.startsWith('guidelines.') && key.endsWith('.season_year')) {
+                if (!foundGuidelineSeasonYearError) {
+                    newErrors['Année de saison'] = this.errors[key];
+                    foundGuidelineSeasonYearError = true;
+                }
+            } else if (key.startsWith('homepageFeatures.') && key.endsWith('.title')) {
+                if (!foundHomepageFeatureTitleError) {
+                    newErrors['Titre'] = this.errors[key];
+                    foundHomepageFeatureTitleError = true;
+                }
+            } else if (key.startsWith('homepageFeatures.') && key.endsWith('.description')) {
+                if (!foundHomepageFeatureDescriptionError) {
+                    newErrors['Description'] = this.errors[key];
+                    foundHomepageFeatureDescriptionError = true;
+                }
+            } else if (key.startsWith('homepageFeatures.') && key.endsWith('.image')) {
+                if (!foundHomepageFeatureImageError) {
+                    newErrors['Image'] = this.errors[key];
+                    foundHomepageFeatureImageError = true;
+                }
+            } else if (key.startsWith('homepageFeatures.') && key.endsWith('.location')) {
+                if (!foundHomepageFeatureLocationError) {
+                    newErrors['Lieu'] = this.errors[key];
+                    foundHomepageFeatureLocationError = true;
+                }
+            } else if (key.startsWith('homepageFeatures.') && key.endsWith('.feature_date')) {
+                if (!foundHomepageFeatureDateError) {
+                    newErrors['Date de l\'événement'] = this.errors[key];
+                    foundHomepageFeatureDateError = true;
+                }
+            } else {
+                newErrors[key] = this.errors[key];
+            }
+        }
+
+        return newErrors;
+    }
+},
+
+
     methods: {
         humanizeFieldName(fieldName) {
             const fieldNames = {
@@ -48,8 +99,17 @@ export default {
                 season_year: "Année de saison",
                 title: "Titre",
                 feature_date: "Date de l'événement",
+                "guidelines.*.price": "Prix des directives",
+                "guidelines.*.season_year": "Année de la saison des directives",
+
+
+                 
+                "contact.*.phone_number" : "Numéro de téléphone",
+                "contact.*.name" : "Nom",
+                "contact.*.lastname" : "Prénom",
+                "contact.*.email" : "Email",
             };
-            return fieldNames[fieldName] || fieldName;
+            return fieldNames[fieldName] || fieldName.replace(/_/g, " ").charAt(0).toUpperCase() + fieldName.slice(1);
         },
     },
 };

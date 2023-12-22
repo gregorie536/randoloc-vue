@@ -144,3 +144,17 @@ export default {
 }
 </style>
 
+
+// Compare this snippet from resources/js/Pages/Contact/Edit.vue:
+
+//                 </button>
+
+//                 <!--  -->
+
+//             </form>
+
+//         </div>
+
+//     </AuthenticatedLayout>
+
+// </template>

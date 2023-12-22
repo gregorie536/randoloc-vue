@@ -145,7 +145,7 @@ export default {
                 type: "number",
             },
             {
-                label: "Localisation",
+                label: "Lieu",
                 model: "location",
                 id: "eventLocation",
                 type: "text",

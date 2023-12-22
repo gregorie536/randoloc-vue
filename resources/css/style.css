@@ -67,7 +67,7 @@ button {
 }
 
 .error {
-  color: #ff6600;
+  color: red;
   font-size: larger;
   font-weight: bolder;
   display: flex;
