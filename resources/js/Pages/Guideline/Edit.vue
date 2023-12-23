@@ -76,7 +76,13 @@ export default {
         const guidelines = ref(props.guidelines);
         const seasonYear = ref(props.seasonYear);
 
-        // console.log("Initial seasonYear:", props.seasonYear);
+        function formatSeasonYear(input) {
+            let numbers = input.replace(/\D/g, '');
+            if (numbers.length !== 8) {
+                return input; // Retourner la saisie originale si le format n'est pas valide
+            }
+            return `${numbers.substring(0, 4)} - ${numbers.substring(4, 8)}`;
+        }
 
         function submitForm() {
             const updatedGuidelines = guidelines.value.map((guideline) => {
@@ -84,18 +90,15 @@ export default {
                     id: guideline.id,
                     type: guideline.type,
                     price: guideline.price,
-                    season_year: seasonYear.value,
+                    season_year: formatSeasonYear(seasonYear.value),
                 };
             });
-            Inertia.post("/guidelines/update", {
-                guidelines: updatedGuidelines,
-            });
+            Inertia.post("/guidelines/update", { guidelines: updatedGuidelines });
         }
-        /////////////////////////////
+
         function goToDashboard() {
             Inertia.get("/dashboard");
         }
-        /////////////////////////////
 
         return {
             submitForm,
@@ -109,6 +112,7 @@ export default {
     },
 };
 </script>
+
 
 <style lang="scss" scoped>
 @import "../../../css/style.scss";

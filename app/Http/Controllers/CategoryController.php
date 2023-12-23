@@ -86,8 +86,11 @@ class CategoryController extends Controller
     {
         $category = Category::with('events')->findOrFail($id);
 
-        if ($category->events()->count() > 0) {
-            return redirect()->route('categories.manage')->with('error', 'Cette catégorie ne peut pas être supprimée car elle contient des événements.');
+        // if ($category->events()->count() > 0) {
+        //     return redirect()->route('categories.manage')->with('error', 'Cette catégorie ne peut pas être supprimée car elle contient des événements.');
+        // }
+        foreach ($category->events as $event) {
+            $event->delete();
         }
 
         $category->delete();

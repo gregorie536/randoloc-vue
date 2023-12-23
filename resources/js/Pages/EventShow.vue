@@ -16,7 +16,8 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold">Date</h3>
-                        <p>{{ event.date }}</p>
+                        <!-- <p>{{ event.date }}</p> -->
+                        {{ event.day }} {{ formatDate(event.date) }}
                     </div>
                 </div>
 
@@ -25,14 +26,14 @@
                     <p>{{ event.supervisor }}</p>
                 </div>
 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <h3 class="text-lg font-semibold">Jour de la semaine</h3>
                     <p>{{ event.day }}</p>
-                </div>
+                </div> -->
 
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Nombre de Km</h3>
-                    <p>{{ event.number_km }}</p>
+                    <h3 class="text-lg font-semibold">Nombre de km</h3>
+                    <p>{{ event.number_km }} km</p>
                 </div>
             </div>
         </div>
@@ -61,6 +62,10 @@ export default {
     methods: {
         goBack() {
             Inertia.visit(document.referrer);
+        },
+        formatDate(dateString) {
+            const options = { year: "numeric", month: "long", day: "numeric" };
+            return new Date(dateString).toLocaleDateString("fr-FR", options);
         },
     },
 };

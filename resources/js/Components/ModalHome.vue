@@ -3,7 +3,12 @@
         <div class="modal-container">
             <h2 class="modal-title">{{ modalContent.title }}</h2>
             <!-- Afficher l'image si elle existe -->
-            <img v-if="modalContent.image" :src="imageUrl(modalContent.image)" alt="Image" class="modal-image">
+            <img
+                v-if="modalContent.image"
+                :src="imageUrl(modalContent.image)"
+                alt="Image"
+                class="modal-image"
+            />
             <!-- Description -->
             <p class="modal-description">
                 Description : {{ modalContent.description }}
@@ -12,14 +17,14 @@
             <p class="modal-location">Lieu : {{ modalContent.location }}</p>
             <!-- Date -->
             <p class="modal-feature-date">
-                Date : {{ modalContent.feature_date }}
+                <!-- Date : {{ modalContent.feature_date }} -->
+                Date : {{ formatDate(modalContent.feature_date) }}
             </p>
             <!-- Bouton de fermeture -->
             <button @click="closeModal" class="modal-close-btn">Fermer</button>
         </div>
     </div>
 </template>
-
 
 <script>
 export default {
@@ -41,6 +46,10 @@ export default {
         imageUrl(imagePath) {
             // return `http://127.0.0.1:8000/storage/${imagePath}`;
             return `${window.location.origin}/storage/${imagePath}`;
+        },
+        formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('fr-FR', options);
         }
     },
 };
