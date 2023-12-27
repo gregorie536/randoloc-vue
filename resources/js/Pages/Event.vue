@@ -93,12 +93,12 @@ p {
     margin-left: 30px;
 }
 .hr-main-text-color {
-    border-color: #223663; /* Utilisation de la couleur hexadécimale directement */
-    border-width: 2px; /* Réglage de l'épaisseur de la ligne */
-    margin-top: 1rem; /* Marge supérieure */
-    margin-bottom: 1rem; /* Marge inférieure */
-    margin-left: 1.5rem; /* Marge gauche */
-    margin-right: 1.5rem; /* Marge droite */
+    border-color: $main-text-color;
+    border-width: 2px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
 }
 
 </style>

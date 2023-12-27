@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
@@ -96,12 +96,46 @@ export default {
     setup(props) {
         const contacts = ref(props.contacts);
 
+        function toUpperCase(string) {
+            return string.toUpperCase();
+        }
+
+        function formatPhoneNumber(phoneNumber) {
+            let formatted = phoneNumber.replace(/\D/g, "").substring(0, 10);
+            return formatted.replace(/(\d{2})(?=\d)/g, "$1 ");
+        }
+
+        contacts.value.forEach((contact, index) => {
+            watch(
+                () => contacts.value[index].lastname,
+                (newValue) => {
+                    contacts.value[index].lastname = toUpperCase(newValue);
+                }
+            );
+
+            watch(
+                () => contacts.value[index].firstname,
+                (newValue) => {
+                    contacts.value[index].firstname =
+                        newValue.charAt(0).toUpperCase() + newValue.slice(1);
+                }
+            );
+
+            watch(
+                () => contacts.value[index].phone_number,
+                (newValue) => {
+                    contacts.value[index].phone_number =
+                        formatPhoneNumber(newValue);
+                }
+            );
+        });
+
         function submitForm() {
             const updatedContacts = contacts.value.map((contact) => ({
                 id: contact.id,
                 lastname: contact.lastname,
                 firstname: contact.firstname,
-                phone_number: contact.phone_number,
+                phone_number: contact.phone_number.replace(/\s/g, ""),
                 email: contact.email,
             }));
 
@@ -113,6 +147,7 @@ export default {
         }
 
         return {
+            contacts,
             submitForm,
             goToDashboard,
         };

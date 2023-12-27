@@ -16,7 +16,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('active', true)->get();
+        $events = Event::where('active', true)
+            ->orderBy('created_at', 'desc')
+            ->get();
         $categories = Category::all();
 
         return Inertia::render('Event', [
@@ -42,26 +44,11 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'description' => 'required|string',
-        //     'supervisor' => 'nullable|string',
-        //     'day' => 'nullable|string',
-        //     'date' => 'nullable|date',
-        //     'number_km' => 'nullable|numeric',
-        //     'location' => 'required|string',
-        //     'active' => 'required|boolean',
-        //     'category_id' => 'required|exists:categories,id',
-        // ]);
-
-        // $event = new Event($validatedData);
-
         $event = new Event($request->validated());
         $event->user_id = auth()->id();
-
         $event->save();
 
-        return redirect()->route('events.manage')->with('success', 'Événement créé avec succès.');
+        return redirect()->route('dashboard')->with('successMessage', 'L\'évènement a été créé !');
     }
 
     /**
@@ -99,23 +86,10 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, $id)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'description' => 'required|string',
-        //     'supervisor' => 'nullable|string',
-        //     'day' => 'nullable|string',
-        //     'date' => 'nullable|date',
-        //     'number_km' => 'nullable|numeric',
-        //     'location' => 'required|string',
-        //     'active' => 'required|boolean',
-        //     'category_id' => 'required|exists:categories,id',
-        // ]);
-
         $event = Event::findOrFail($id);
-        // $event->update($validatedData);
         $event->update($request->validated());
 
-        return redirect()->route('events.manage')->with('success', 'Événement mis à jour avec succès.');
+        return redirect()->route('dashboard')->with('successMessage', 'L\'évènement a été mis à jour !');
     }
 
     /**
@@ -129,7 +103,7 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->route('events.manage')->with('success', 'Événement supprimé avec succès.');
+        return redirect()->route('dashboard')->with('successMessage', 'L\'évènement a été supprimé !');
     }
 
     public function choice()

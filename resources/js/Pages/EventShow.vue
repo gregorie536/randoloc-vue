@@ -16,7 +16,6 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold">Date</h3>
-                        <!-- <p>{{ event.date }}</p> -->
                         {{ event.day }} {{ formatDate(event.date) }}
                     </div>
                 </div>
@@ -25,11 +24,6 @@
                     <h3 class="text-lg font-semibold">Meneur</h3>
                     <p>{{ event.supervisor }}</p>
                 </div>
-
-                <!-- <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Jour de la semaine</h3>
-                    <p>{{ event.day }}</p>
-                </div> -->
 
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold">Nombre de km</h3>

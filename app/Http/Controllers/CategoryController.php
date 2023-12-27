@@ -23,16 +23,12 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|string|max:255',
-        // ]);
-
         $category = new Category();
         $category->name = $request->name;
         $category->user_id = auth()->id();
         $category->save();
 
-        return redirect()->route('categories.manage');
+        return redirect()->route('dashboard')->with('successMessage', 'La catégorie a été crée !');
     }
 
     /**
@@ -64,16 +60,11 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|string|max:255',
-        // ]);
-
         $category = Category::findOrFail($id);
-        // $category->name = $validatedData['name'];
         $category->name = $request->name;
         $category->save();
 
-        return redirect()->route('categories.manage');
+        return redirect()->route('dashboard')->with('successMessage', 'La catégorie a été mise à jour !');
     }
 
     /**
@@ -87,7 +78,7 @@ class CategoryController extends Controller
         $category = Category::with('events')->findOrFail($id);
 
         // if ($category->events()->count() > 0) {
-        //     return redirect()->route('categories.manage')->with('error', 'Cette catégorie ne peut pas être supprimée car elle contient des événements.');
+        //     return redirect()->route('categories.manage')->with('error', 'Cette catégorie ne peut pas être supprimée car elle contient des événements !');
         // }
         foreach ($category->events as $event) {
             $event->delete();
@@ -95,7 +86,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('categories.manage')->with('successMessage', 'Catégorie supprimée avec succès.');
+        return redirect()->route('dashboard')->with('successMessage', 'La catégorie a été supprimée !');
     }
 
     public function manage()

@@ -45,7 +45,7 @@ class HomepageFeaturesController extends Controller
             $homepageFeature->update($data);
         }
 
-        return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie !');
+        return redirect()->route('dashboard')->with('successMessage', 'L\'info du moment a été mis à jour !');
     }
 
     public function choice()

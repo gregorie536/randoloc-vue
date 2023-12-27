@@ -65,6 +65,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Inertia } from "@inertiajs/inertia";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
+
 export default {
     data() {
         return {
@@ -73,6 +74,14 @@ export default {
             comment: "",
             errors: [],
         };
+    },
+
+    watch: {
+        comment(newVal) {
+            if (newVal.length > 0 && newVal[0] !== newVal[0].toUpperCase()) {
+                this.comment = newVal.charAt(0).toUpperCase() + newVal.slice(1);
+            }
+        },
     },
 
     methods: {

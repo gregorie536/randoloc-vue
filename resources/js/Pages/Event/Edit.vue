@@ -102,7 +102,7 @@
 
 <script>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
 
@@ -136,7 +136,6 @@ export default {
                 id: "eventSupervisor",
                 type: "text",
             },
-            // { label: "Jour", model: "day", id: "eventDay", type: "text" },
             { label: "Date", model: "date", id: "eventDate", type: "date" },
             {
                 label: "Nombre de Km",
@@ -150,7 +149,6 @@ export default {
                 id: "eventLocation",
                 type: "text",
             },
-            // Ajoutez d'autres champs si nécessaire
         ];
         const daysOfWeek = [
             "Lundi",
@@ -170,6 +168,52 @@ export default {
         function goToDashboard() {
             Inertia.get("/dashboard");
         }
+
+        function capitalizeFirstLetter(string) {
+            if (!string || typeof string !== "string") return "";
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        watch(
+            () => form.value.name,
+            (newValue) => {
+                form.value.name = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.description,
+            (newValue) => {
+                form.value.description = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.supervisor,
+            (newValue) => {
+                form.value.supervisor = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.location,
+            (newValue) => {
+                form.value.location = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.number_km,
+            (newValue) => {
+                if (!newValue) return;
+                let km = parseInt(newValue, 10);
+                if (isNaN(km) || km < 1) {
+                    form.value.number_km = 1;
+                } else if (km > 999) {
+                    form.value.number_km = 999;
+                }
+            }
+        );
 
         return {
             formFields,

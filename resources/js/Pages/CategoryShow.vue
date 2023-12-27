@@ -51,9 +51,6 @@ export default {
         viewEventDetail(eventId) {
             Inertia.get(this.route("eventDetail", eventId));
         },
-        // goBack() {
-        //     Inertia.visit(document.referrer);
-        // },
         goBack() {
             Inertia.get(this.route("event"));
         },

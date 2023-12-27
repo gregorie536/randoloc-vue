@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
@@ -59,6 +59,17 @@ export default {
         const form = ref({
             name: "",
         });
+        function capitalizeFirstLetter(string) {
+            if (!string || typeof string !== "string") return "";
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        watch(
+            () => form.value.name,
+            (newValue) => {
+                form.value.name = capitalizeFirstLetter(newValue);
+            }
+        );
 
         function submitForm() {
             Inertia.post("/categories", form.value);

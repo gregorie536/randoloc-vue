@@ -7,22 +7,24 @@
             <form @submit.prevent="submitForm" class="space-y-6">
                 <ValidationErrors :errors="errors" />
                 <div class="border-b-2 border-aliceblue pb-6 mb-6">
-                <div
-                    v-for="(field, index) in textFields"
-                    :key="index"
-                    class="flex flex-col mb-4"
-                >
-                    <label :for="field.id" class="text-main-text-color mb-1">{{
-                        field.label
-                    }}</label>
-                    <input
-                        :id="field.id"
-                        v-model="form[field.model]"
-                        :type="field.type"
-                        class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
-                    />
+                    <div
+                        v-for="(field, index) in textFields"
+                        :key="index"
+                        class="flex flex-col mb-4"
+                    >
+                        <label
+                            :for="field.id"
+                            class="text-main-text-color mb-1"
+                            >{{ field.label }}</label
+                        >
+                        <input
+                            :id="field.id"
+                            v-model="form[field.model]"
+                            :type="field.type"
+                            class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
+                        />
+                    </div>
                 </div>
-            </div>
                 <div class="flex flex-col mb-4">
                     <label for="eventDay" class="text-main-text-color mb-1"
                         >Jour de la semaine :</label
@@ -75,7 +77,6 @@
                         class="rounded border-gray-400 focus:border-blue-500"
                     />
                 </div>
-                <!-- <div>Active: {{ form.active }}</div> -->
 
                 <div class="flex justify-end">
                     <button
@@ -99,7 +100,7 @@
 
 <script>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
 
@@ -132,7 +133,6 @@ export default {
                 id: "eventSupervisor",
                 type: "text",
             },
-            // { label: "Jour", model: "day", id: "eventDay", type: "text" },
             { label: "Date", model: "date", id: "eventDate", type: "date" },
             {
                 label: "Nombre de Km",
@@ -177,6 +177,52 @@ export default {
         function goToDashboard() {
             Inertia.get("/dashboard");
         }
+
+        function capitalizeFirstLetter(string) {
+            if (!string || typeof string !== "string") return "";
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        watch(
+            () => form.value.name,
+            (newValue) => {
+                form.value.name = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.description,
+            (newValue) => {
+                form.value.description = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.supervisor,
+            (newValue) => {
+                form.value.supervisor = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.location,
+            (newValue) => {
+                form.value.location = capitalizeFirstLetter(newValue);
+            }
+        );
+
+        watch(
+            () => form.value.number_km,
+            (newValue) => {
+                if (!newValue) return;
+                let km = parseInt(newValue, 10);
+                if (isNaN(km) || km < 1) {
+                    form.value.number_km = 1;
+                } else if (km > 999) {
+                    form.value.number_km = 999;
+                }
+            }
+        );
 
         return {
             textFields,

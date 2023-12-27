@@ -1,14 +1,14 @@
 <template>
     <AuthenticatedLayout>
         <div class="bg-main-bg-color p-8 rounded-md shadow-lg">
-            <!-- Titre -->
             <h1 class="text-xl font-semibold text-main-text-color mb-4">
                 Administration des contacts
             </h1>
             <div class="space-y-6">
                 <InertiaLink
                     :href="route('contact.edit')"
-                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
+                >
                     Gestion des contacts
                 </InertiaLink>
             </div>
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import { InertiaLink } from '@inertiajs/inertia-vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { InertiaLink } from "@inertiajs/inertia-vue3";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 export default {
     components: {

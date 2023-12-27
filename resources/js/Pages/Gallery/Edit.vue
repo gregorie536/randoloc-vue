@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
@@ -99,6 +99,20 @@ export default {
         function goToDashboard() {
             Inertia.get("/dashboard");
         }
+
+        function capitalizeFirstLetter(string) {
+            if (!string || typeof string !== "string") return "";
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        watch(
+            () => form.value.comment,
+            (newValue, oldValue) => {
+                if (newValue !== oldValue) {
+                    form.value.comment = capitalizeFirstLetter(newValue);
+                }
+            }
+        );
 
         return {
             form,

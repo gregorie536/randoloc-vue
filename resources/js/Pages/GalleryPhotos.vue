@@ -56,9 +56,6 @@ export default {
     @include rounded-card;
     background-color: $nav-bg-color;
 }
-// .image-container img {
-//     border-radius: 20px;
-// }
 
 .flex-wrap {
     justify-content: center;
@@ -67,11 +64,6 @@ export default {
 h1 {
     margin-bottom: 20px;
 }
-
-//////////////////////////////////////////////////
-/////////////////////////////////////////////////
-////À VOIR AVEC L'ASSOCIATION POUR LES IMAGES///
-///////////////////////////////////////////////
 
 .image-container {
     height: 200px;

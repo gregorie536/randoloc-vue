@@ -2,25 +2,25 @@
     <div v-if="isModalOpen" class="modal-overlay">
         <div class="modal-container">
             <h2 class="modal-title">{{ modalContent.title }}</h2>
-            <!-- Afficher l'image si elle existe -->
+
             <img
                 v-if="modalContent.image"
                 :src="imageUrl(modalContent.image)"
                 alt="Image"
                 class="modal-image"
             />
-            <!-- Description -->
+
             <p class="modal-description">
                 Description : {{ modalContent.description }}
             </p>
-            <!-- Lieu -->
+
             <p class="modal-location">Lieu : {{ modalContent.location }}</p>
-            <!-- Date -->
+
             <p class="modal-feature-date">
-                <!-- Date : {{ modalContent.feature_date }} -->
+
                 Date : {{ formatDate(modalContent.feature_date) }}
             </p>
-            <!-- Bouton de fermeture -->
+
             <button @click="closeModal" class="modal-close-btn">Fermer</button>
         </div>
     </div>
@@ -44,7 +44,7 @@ export default {
             this.$emit("close");
         },
         imageUrl(imagePath) {
-            // return `http://127.0.0.1:8000/storage/${imagePath}`;
+
             return `${window.location.origin}/storage/${imagePath}`;
         },
         formatDate(dateString) {

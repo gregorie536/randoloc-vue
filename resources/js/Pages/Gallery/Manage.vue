@@ -5,21 +5,35 @@
                 Gestion des images
             </h1>
             <div class="space-y-4">
-                <div v-for="gallery in galleries" :key="gallery.id" class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
+                <div
+                    v-for="gallery in galleries"
+                    :key="gallery.id"
+                    class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6"
+                >
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-center"
+                    >
                         <div class="flex flex-col items-center">
-                            <img class="mb-2 md:mb-0 manage-img" :src="'/storage/' + gallery.image" :alt="gallery.comment" />
-                            <p class="text-gray-700 text-sm md:text-base">{{ gallery.comment }}</p>
+                            <img
+                                class="mb-2 md:mb-0 manage-img"
+                                :src="'/storage/' + gallery.image"
+                                :alt="gallery.comment"
+                            />
+                            <p class="text-gray-700 text-sm md:text-base">
+                                {{ gallery.comment }}
+                            </p>
                         </div>
                         <div>
-                            <InertiaLink 
-                                :href="route('gallery.edit', gallery.id)" 
-                                class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 text-sm md:text-base mr-2">
+                            <InertiaLink
+                                :href="route('gallery.edit', gallery.id)"
+                                class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 text-sm md:text-base mr-2"
+                            >
                                 Modifier
                             </InertiaLink>
-                            <button 
-                                @click="confirmDeletion(gallery.id)" 
-                                class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 text-sm md:text-base">
+                            <button
+                                @click="confirmDeletion(gallery.id)"
+                                class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 text-sm md:text-base"
+                            >
                                 Supprimer
                             </button>
                         </div>
@@ -29,7 +43,6 @@
         </div>
     </AuthenticatedLayout>
 </template>
-
 
 <script>
 import { InertiaLink } from "@inertiajs/inertia-vue3";

@@ -24,11 +24,6 @@ class GalleryController extends Controller
 
     public function store(GalleryRequest $request)
     {
-        // $request->validate([
-        //     'image' => 'required|image|max:2048',
-        //     'comment' => 'nullable|string'
-        // ]);
-
         $imagePath = $request->file('image')->store('gallery', 'public');
 
         Gallery::create([
@@ -36,7 +31,7 @@ class GalleryController extends Controller
             'comment' => $request->input('comment')
         ]);
 
-        return redirect()->route('gallery.choice')->with('successMessage', 'Mise à jour réussie !');
+        return redirect()->route('dashboard')->with('successMessage', 'L\'image à été ajoutée !');
     }
 
     public function edit(Gallery $gallery)
@@ -46,11 +41,6 @@ class GalleryController extends Controller
 
     public function update(GalleryRequest $request, Gallery $gallery)
     {
-        // $request->validate([
-        //     'image' => 'sometimes|image|max:2048',
-        //     'comment' => 'nullable|string'
-        // ]);
-
         if ($request->hasFile('image')) {
             Storage::disk('public')->delete($gallery->image);
 
@@ -61,7 +51,7 @@ class GalleryController extends Controller
         $gallery->comment = $request->input('comment');
         $gallery->save();
 
-        return redirect()->route('gallery.choice')->with('message', 'Image mise à jour avec succès!');
+        return redirect()->route('dashboard')->with('successMessage', 'L\'image a été mis à jour !');
     }
 
     public function destroy(Gallery $gallery)
@@ -69,7 +59,7 @@ class GalleryController extends Controller
         Storage::disk('public')->delete($gallery->image);
         $gallery->delete();
 
-        return redirect()->route('gallery.choice')->with('message', 'Image supprimée avec succès!');
+        return redirect()->route('dashboard')->with('successMessage', 'L\'image a été supprimée !');
     }
 
     public function choice()

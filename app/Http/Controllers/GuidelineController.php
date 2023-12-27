@@ -36,7 +36,7 @@ class GuidelineController extends Controller
             $guideline = Guideline::find($updatedGuideline['id']);
             $guideline->update($updatedGuideline);
         }
-        return redirect()->route('dashboard')->with('successMessage', 'Mise à jour réussie !');
+        return redirect()->route('dashboard')->with('successMessage', 'Les prix ont été mis à jour !');
     }
 
     public function choice()

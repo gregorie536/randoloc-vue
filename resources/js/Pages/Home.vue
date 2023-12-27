@@ -63,7 +63,6 @@ export default {
         };
     },
     mounted() {
-        // Ouvrir le modal automatiquement au chargement de la page
         this.isModalOpen = true;
     },
 };

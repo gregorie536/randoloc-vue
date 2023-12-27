@@ -5,7 +5,6 @@
             v-for="(card, index) in cardName"
             :key="index"
         >
-            <!-- @click.prevent pour L'info du moment -->
             <a
                 v-if="card.name === 'L\'info du moment'"
                 @click.prevent="openModal(card)"
@@ -19,7 +18,7 @@
                     <div class="text-center"></div>
                 </div>
             </a>
-            <!-- :href pour toutes les autres cartes -->
+
             <a v-else :href="card.link" class="text-blue-500">
                 <img :src="card.image" :alt="card.alt" class="w-full" />
                 <div class="px-6 py-4">
@@ -59,14 +58,7 @@ export default {
                     alt: "Sorties et séjours",
                 },
                 {
-                    // name: "L'info du moment",
-                    // link: "/sorties-et-sejours",
-                    // image: "/images/page-home/info.jpg",
-                    // alt: "L'info du moment",
                     name: "L'info du moment",
-                    // Ajoutez les propriétés attendues par le modal ici
-                    // title: "Titre de l'info du moment",
-
                     description: "Description de l'info du moment",
                     location: "Lieu de l'info du moment",
                     feature_date: "Date de l'info du moment",
@@ -84,24 +76,19 @@ export default {
             modalContent: null,
         };
     },
-    //
     mounted() {
         if (this.homepageFeatures && this.homepageFeatures.length > 0) {
             this.openModal(this.homepageFeatures[0]);
         }
     },
-    //
     methods: {
         openModal(card) {
-            // this.isModalOpen = true;
-            // this.modalContent = card;
             this.isModalOpen = true;
             this.modalContent = {
                 title: card.title,
                 description: card.description,
                 location: card.location,
                 feature_date: card.feature_date,
-                // image: card.image,
                 image: "/storage/" + card.image,
             };
         },

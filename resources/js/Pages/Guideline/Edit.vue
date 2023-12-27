@@ -15,11 +15,6 @@
                         Prix {{ index + 1 }} : {{ guideline.type }}
                     </h2>
                     <div class="flex flex-col mb-4">
-                        <!-- <label
-                        :for="'price' + index"
-                        class="text-main-text-color mb-1"
-                        >Prix :</label
-                    > -->
                         <input
                             :id="'price' + index"
                             v-model="guideline.price"
@@ -45,7 +40,6 @@
                 >
                     Mettre à jour
                 </button>
-                <!--  -->
                 <button
                     type="button"
                     class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none"
@@ -53,14 +47,13 @@
                 >
                     Annuler
                 </button>
-                <!--  -->
             </form>
         </div>
     </AuthenticatedLayout>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
@@ -77,9 +70,9 @@ export default {
         const seasonYear = ref(props.seasonYear);
 
         function formatSeasonYear(input) {
-            let numbers = input.replace(/\D/g, '');
+            let numbers = input.replace(/\D/g, "");
             if (numbers.length !== 8) {
-                return input; // Retourner la saisie originale si le format n'est pas valide
+                return input;
             }
             return `${numbers.substring(0, 4)} - ${numbers.substring(4, 8)}`;
         }
@@ -93,8 +86,24 @@ export default {
                     season_year: formatSeasonYear(seasonYear.value),
                 };
             });
-            Inertia.post("/guidelines/update", { guidelines: updatedGuidelines });
+            Inertia.post("/guidelines/update", {
+                guidelines: updatedGuidelines,
+            });
         }
+
+        function validatePrice(price) {
+            let num = Math.floor(Number(price));
+            return num >= 0 && num <= 999 ? num : 1;
+        }
+
+        guidelines.value.forEach((guideline, index) => {
+            watch(
+                () => guidelines.value[index].price,
+                (newValue) => {
+                    guidelines.value[index].price = validatePrice(newValue);
+                }
+            );
+        });
 
         function goToDashboard() {
             Inertia.get("/dashboard");
@@ -112,7 +121,6 @@ export default {
     },
 };
 </script>
-
 
 <style lang="scss" scoped>
 @import "../../../css/style.scss";

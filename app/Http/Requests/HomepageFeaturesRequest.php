@@ -22,12 +22,6 @@ class HomepageFeaturesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'title' => 'required|string|max:200',
-            // 'description' => 'required|string',
-            // 'image' => 'sometimes|file|image|max:2048',
-            // 'location' => 'required|string|max:200',
-            // 'feature_date' => 'required|date',
-            // 'homepageFeatures.*.id' => 'required|exists:homepage_features,id',
             'homepageFeatures.*.title' => 'required|string|max:255',
             'homepageFeatures.*.description' => 'required|string',
             'homepageFeatures.*.image' => 'sometimes|file|image|max:2048',
