@@ -113,7 +113,7 @@ class EventController extends Controller
 
     public function manage()
     {
-        $events = Event::all();
+        $events = Event::orderBy('created_at', 'desc')->get();
         return Inertia::render('Event/Manage', ['events' => $events]);
     }
 }

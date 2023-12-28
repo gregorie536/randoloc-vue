@@ -117,6 +117,7 @@ export default {
         errors: Object,
     },
     setup(props) {
+        // console.log(props.event);
         const formFields = [
             {
                 label: "Nom de l'événement",
@@ -159,7 +160,12 @@ export default {
             "Samedi",
             "Dimanche",
         ];
-        const form = ref({ ...props.event, active: false });
+
+        const isActive = props.event.active === 1;
+        const form = ref({
+            ...props.event,
+            active: isActive,
+        });
 
         function submitForm() {
             Inertia.put(`/events/${props.event.id}`, form.value);
@@ -214,6 +220,24 @@ export default {
                 }
             }
         );
+
+        const formattedDate = props.event.date
+            ? formatEventDate(props.event.date)
+            : "";
+
+        form.value.date = formattedDate;
+
+        function formatEventDate(date) {
+            const d = new Date(date);
+            let month = "" + (d.getMonth() + 1);
+            let day = "" + d.getDate();
+            const year = d.getFullYear();
+
+            if (month.length < 2) month = "0" + month;
+            if (day.length < 2) day = "0" + day;
+
+            return [year, month, day].join("-");
+        }
 
         return {
             formFields,
