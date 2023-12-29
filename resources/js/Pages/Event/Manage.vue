@@ -16,6 +16,7 @@
                         <span class="text-lg mb-2 md:mb-0">{{
                             event.name
                         }}</span>
+
                         <div>
                             <InertiaLink
                                 :href="route('events.edit', event.id)"
@@ -29,6 +30,14 @@
                             >
                                 Supprimer
                             </button>
+                            <span
+                                v-if="event.active"
+                                class="text-green-500 ml-2"
+                                >Actif</span
+                            >
+                            <span v-else class="text-red-500 ml-2"
+                                >Inactif</span
+                            >
                         </div>
                     </div>
                 </div>

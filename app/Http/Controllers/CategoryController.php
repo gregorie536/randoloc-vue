@@ -37,7 +37,10 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        $categoryEvents = Event::where('category_id', $id)->get();
+        $categoryEvents = Event::where('category_id', $id)
+        ->where('active', true)
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return Inertia::render('CategoryShow', [
             'category' => $category,

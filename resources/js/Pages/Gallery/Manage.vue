@@ -8,18 +8,18 @@
                 <div
                     v-for="gallery in galleries"
                     :key="gallery.id"
-                    class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6"
+                    class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6 flex items-center"
                 >
-                    <div
-                        class="flex flex-col md:flex-row justify-between items-center"
-                    >
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-col md:flex-row justify-between items-center w-full">
+                        <div class="flex flex-col items-center w-24 md:w-auto">
                             <img
-                                class="mb-2 md:mb-0 manage-img"
+                                class="mb-2 md:mb-0 manage-img self-end"
                                 :src="'/storage/' + gallery.image"
                                 :alt="gallery.comment"
                             />
-                            <p class="text-gray-700 text-sm md:text-base">
+                        </div>
+                        <div class="flex flex-col items-center w-full md:w-auto">
+                            <p class="text-gray-700 text-sm md:text-base max-w-md">
                                 {{ gallery.comment }}
                             </p>
                         </div>
@@ -43,6 +43,10 @@
         </div>
     </AuthenticatedLayout>
 </template>
+
+
+
+
 
 <script>
 import { InertiaLink } from "@inertiajs/inertia-vue3";
