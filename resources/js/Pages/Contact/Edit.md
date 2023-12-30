@@ -55,16 +55,12 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
-    components: {
-        AuthenticatedLayout,
-        ValidationErrors,
-    },
     props: {
         contacts: Array,
         errors: Object,
@@ -72,18 +68,39 @@ export default {
     setup(props) {
         const contacts = ref(props.contacts);
 
-        function formatFirstName(contact) {
-            contact.firstname = contact.firstname.charAt(0).toUpperCase() + contact.firstname.slice(1);
+        function toUpperCase(string) {
+            return string.toUpperCase();
         }
 
-        function formatLastName(contact) {
-            contact.lastname = contact.lastname.toUpperCase();
+        function formatPhoneNumber(phoneNumber) {
+            let formatted = phoneNumber.replace(/\D/g, "").substring(0, 10);
+            return formatted.replace(/(\d{2})(?=\d)/g, "$1 ");
         }
 
-        function formatPhoneNumber(contact) {
-            let formatted = contact.phone_number.replace(/\D/g, "").substring(0, 10);
-            contact.phone_number = formatted.replace(/(\d{2})(?=\d)/g, "$1 ");
-        }
+        contacts.value.forEach((contact, index) => {
+            watch(
+                () => contacts.value[index].lastname,
+                (newValue) => {
+                    contacts.value[index].lastname = toUpperCase(newValue);
+                }
+            );
+
+            watch(
+                () => contacts.value[index].firstname,
+                (newValue) => {
+                    contacts.value[index].firstname =
+                        newValue.charAt(0).toUpperCase() + newValue.slice(1);
+                }
+            );
+
+            watch(
+                () => contacts.value[index].phone_number,
+                (newValue) => {
+                    contacts.value[index].phone_number =
+                        formatPhoneNumber(newValue);
+                }
+            );
+        });
 
         function submitForm() {
             const updatedContacts = contacts.value.map((contact) => ({
@@ -105,10 +122,11 @@ export default {
             contacts,
             submitForm,
             goToDashboard,
-            formatFirstName,
-            formatLastName,
-            formatPhoneNumber
         };
+    },
+    components: {
+        AuthenticatedLayout,
+        ValidationErrors,
     },
 };
 </script>

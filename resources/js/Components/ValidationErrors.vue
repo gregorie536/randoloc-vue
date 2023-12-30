@@ -160,6 +160,8 @@ export default {
                 season_year: "Année de saison",
                 title: "Titre",
                 feature_date: "Date de l'événement",
+                firstname: "Prénom",
+                lastname: "Nom",
             };
             return (
                 fieldNames[fieldName] ||

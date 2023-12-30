@@ -11,7 +11,11 @@ use App\Http\Controllers\{
     GuidelineController,
     HomepageFeaturesController,
     EventController,
-    CategoryController
+    CategoryController,
+    OrganizationController,
+    BoardController,
+    MemberController,
+    CommitteeController
 };
 
 /*
@@ -86,6 +90,35 @@ Route::middleware('auth')->group(function () {
     Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
     Route::get('/events/manage', [EventController::class, 'manage'])->name('events.manage');
+
+    // Organization -> Board -> Members -> Committees
+    Route::get('/organization/choice', [OrganizationController::class, 'choice'])->name('organization.choice');
+
+    // Boards
+    Route::get('/organization/boards/create', [BoardController::class, 'create'])->name('organization.boards.create');
+    Route::get('/organization/boards/{board}/edit', [BoardController::class, 'edit'])->name('organization.boards.edit');
+    Route::post('/organization/boards', [BoardController::class, 'store'])->name('organization.boards.store');
+    Route::get('/organization/boards/manage', [BoardController::class, 'manage'])->name('organization.boards.manage');
+    Route::put('/organization/boards/{board}', [BoardController::class, 'update'])->name('organization.boards.update');
+    Route::get('/organization/boards/choice', [BoardController::class, 'choice'])->name('organization.boards.choice');
+
+    // Members
+    Route::get('/organization/members/create', [MemberController::class, 'create'])->name('organization.members.create');
+    Route::get('/organization/members/{member}/edit', [MemberController::class, 'edit'])->name('organization.members.edit');
+    Route::post('/organization/members', [MemberController::class, 'store'])->name('organization.members.store');
+    Route::get('/organization/members/manage', [MemberController::class, 'manage'])->name('organization.members.manage');
+    Route::put('/organization/members/{member}', [MemberController::class, 'update'])->name('organization.members.update');
+    Route::get('/organization/members/choice', [MemberController::class, 'choice'])->name('organization.members.choice');
+    Route::delete('/organization/members/{member}', [MemberController::class, 'destroy'])->name('organization.members.destroy');
+
+    // Committees
+    Route::get('/organization/committees/create', [CommitteeController::class, 'create'])->name('organization.committees.create');
+    Route::get('/organization/committees/{committee}/edit', [CommitteeController::class, 'edit'])->name('organization.committees.edit');
+    Route::post('/organization/committees', [CommitteeController::class, 'store'])->name('organization.committees.store');
+    Route::get('/organization/committees/manage', [CommitteeController::class, 'manage'])->name('organization.committees.manage');
+    Route::put('/organization/committees/{committee}', [CommitteeController::class, 'update'])->name('organization.committees.update');
+    Route::get('/organization/committees/choice', [CommitteeController::class, 'choice'])->name('organization.committees.choice');
+
 });
 
 Route::get('/organization', function () {

@@ -19,12 +19,12 @@
                     </InertiaLink>
                 </li>
                 <li>
-                    <a
-                        href="#"
+                    <InertiaLink
+                        :href="route('organization.choice')"
                         class="flex items-center text-gray-700 hover:bg-gray-200 p-2 rounded"
                     >
                         <i class="fas fa-file-alt mr-2"></i>Association
-                    </a>
+                    </InertiaLink>
                 </li>
                 <li>
                     <InertiaLink
