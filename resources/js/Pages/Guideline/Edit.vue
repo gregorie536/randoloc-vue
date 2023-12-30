@@ -12,7 +12,8 @@
                     class="border-b-2 border-aliceblue pb-6 mb-6"
                 >
                     <h2 class="text-xl font-semibold text-main-text-color mb-4">
-                        Prix {{ index + 1 }} : {{ guideline.type }}
+                        Prix {{ index + 1 }} :
+                        {{ formatGuidelineType(guideline.type) }}
                     </h2>
                     <div class="flex flex-col mb-4">
                         <input
@@ -118,6 +119,11 @@ export default {
     components: {
         AuthenticatedLayout,
         ValidationErrors,
+    },
+    methods: {
+        formatGuidelineType(type) {
+            return type.replace(/_/g, " ");
+        },
     },
 };
 </script>
