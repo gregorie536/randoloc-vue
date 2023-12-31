@@ -18,27 +18,27 @@
                 <p class="text-center font-bold">La composition du bureau</p>
                 <ul>
                     <li>
-                        <span class="font-bold">Présidente</span> : Raymonde
+                        <span class="font-bold">Présidence</span> : Raymonde
                         BELLEC
                     </li>
                     <li>
-                        <span class="font-bold">Vice-présidente</span> :
+                        <span class="font-bold">Vice-présidence</span> :
                         Marie-France LE GALL
                     </li>
                     <li>
-                        <span class="font-bold">Secrétaire</span> : Dominique
+                        <span class="font-bold">Secrétariat</span> : Dominique
                         VINCENT
                     </li>
                     <li>
-                        <span class="font-bold">Secrétaire adjointe</span> :
+                        <span class="font-bold">Secrétariat adjoint</span> :
                         Marie-France LE GALL
                     </li>
                     <li>
-                        <span class="font-bold">Trésorière</span> : Marie-France
+                        <span class="font-bold">Trésorerie</span> : Marie-France
                         LE GALL
                     </li>
                     <li>
-                        <span class="font-bold">Trésorière adjointe</span> :
+                        <span class="font-bold">Trésorerie adjointe</span> :
                         Raymonde BELLEC
                     </li>
                 </ul>

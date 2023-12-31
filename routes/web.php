@@ -101,6 +101,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/organization/boards/manage', [BoardController::class, 'manage'])->name('organization.boards.manage');
     Route::put('/organization/boards/{board}', [BoardController::class, 'update'])->name('organization.boards.update');
     Route::get('/organization/boards/choice', [BoardController::class, 'choice'])->name('organization.boards.choice');
+    //////////////////////TEST/////////////////////////
+    Route::get('/organization/boards/edit-members', [BoardController::class, 'editBoardMembers'])->name('organization.boards.edit-members');
+    Route::post('/organization/boards/update-members', [BoardController::class, 'updateBoardMembers'])->name('organization.boards.update-members');
+    //////////////////////TEST/////////////////////////
 
     // Members
     Route::get('/organization/members/create', [MemberController::class, 'create'])->name('organization.members.create');
@@ -118,7 +122,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/organization/committees/manage', [CommitteeController::class, 'manage'])->name('organization.committees.manage');
     Route::put('/organization/committees/{committee}', [CommitteeController::class, 'update'])->name('organization.committees.update');
     Route::get('/organization/committees/choice', [CommitteeController::class, 'choice'])->name('organization.committees.choice');
-
+    Route::delete('/organization/committees/{committee}', [CommitteeController::class, 'destroy'])->name('organization.committees.destroy');
 });
 
 Route::get('/organization', function () {

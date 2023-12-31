@@ -5,25 +5,24 @@
                 Administration de l'association
             </h1>
             <div class="space-y-6">
-                <InertiaLink
-                    :href="route('organization.members.choice')"
-                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
-                >
+                <InertiaLink :href="route('organization.members.choice')"
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
                     Gestion des membres
                 </InertiaLink>
 
-                <InertiaLink
-                    :href="route('organization.boards.choice')"
-                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
-                >
-                    Gestion du bureau
+                <InertiaLink :href="route('organization.boards.choice')"
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
+                    Gestion des rôles au sein du bureau
                 </InertiaLink>
 
-                <InertiaLink
-                    :href="route('organization.committees.choice')"
-                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
-                >
+                <InertiaLink :href="route('organization.committees.choice')"
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
                     Gestion des commissions
+                </InertiaLink>
+
+                <InertiaLink :href="route('organization.boards.edit-members')"
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">Gestion
+                    du conseil d’administration
                 </InertiaLink>
             </div>
         </div>

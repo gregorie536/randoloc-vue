@@ -7,7 +7,7 @@
         </div>
         <div class="flex justify-center items-center">
             <div class="content">
-                <p class="font-bold">Président(e) de l'association :</p>
+                <p class="font-bold">Présidence de l'association :</p>
                 <ul>
                     <li>{{ presidentContact.firstname }} {{ presidentContact.lastname }}</li>
                     <li>{{ formattedPresidentPhoneNumber }}</li>

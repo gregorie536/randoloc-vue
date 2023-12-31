@@ -4,67 +4,83 @@ namespace App\Http\Controllers;
 
 use App\Models\Board;
 use App\Models\Member;
+use App\Models\BoardMember;
 use Illuminate\Http\Request;
+use App\Http\Requests\BoardRequest;
 use Inertia\Inertia;
 
 class BoardController extends Controller
 {
-    public function index()
-    {
-        $boards = Board::with('member')->get();
-        return Inertia::render('Boards/Index', ['boards' => $boards]);
-    }
+    // public function index()
+    // {
+    //     $boards = Board::with('member')->get();
+    //     return Inertia::render('Boards/Index', ['boards' => $boards]);
+    // }
 
     public function create()
     {
         $members = Member::all();
-        return Inertia::render('Organization/Board/Create', ['members' => $members]);
+        $boards = Board::all();
+
+        return Inertia::render('Organization/Board/Create', [
+            'members' => $members,
+            'boards' => $boards
+        ]);
     }
 
-    public function store(Request $request)
+
+    public function store(BoardRequest $request)
     {
-        $request->validate([
-            'member_id' => 'required|exists:members,id',
-            'role' => 'required'
-        ]);
+        // $request->validate([
+        //     'member_id' => 'required|exists:members,id',
+        //     'role' => 'required'
+        // ]);
+
+        if (Board::where('role', $request->role)->exists()) {
+            return redirect()->back()->withErrors(['role' => 'Ce rôle est déjà attribué !']);
+        }
 
         Board::create($request->all());
 
-        return redirect()->route('boards.index')->with('successMessage', 'Le rôle a été créé !');
+        return redirect()->route('dashboard')->with('successMessage', 'Le rôle a été créé !');
     }
+
 
     public function edit(Board $board)
     {
         $members = Member::all();
+        $roles = ['Présidence', 'Vice-présidence', 'Secrétariat', 'Secrétariat adjoint', 'Trésorerie', 'Trésorerie adjointe'];
+
         return Inertia::render('Organization/Board/Edit', [
             'board' => $board,
-            'members' => $members
+            'members' => $members,
+            'roles' => $roles
         ]);
     }
 
-    public function update(Request $request, Board $board)
+    public function update(BoardRequest $request, Board $board)
     {
-        $request->validate([
-            'member_id' => 'required|exists:members,id',
-            'role' => 'required'
-        ]);
+        // $request->validate([
+        //     'member_id' => 'required|exists:members,id',
+        //     'role' => 'required'
+        // ]);
 
         $board->update($request->all());
 
-        return redirect()->route('boards.index')->with('successMessage', 'Le rôle a été mis à jour !');
+        return redirect()->route('dashboard')->with('successMessage', 'Le rôle a été mis à jour !');
     }
 
-    public function destroy(Board $board)
-    {
-        $board->delete();
+    // public function destroy(Board $board)
+    // {
+    //     $board->delete();
 
-        return redirect()->route('boards.index')->with('successMessage', 'Le rôle a été supprimé !');
-    }
+    //     return redirect()->route('dashboard')->with('successMessage', 'Le rôle a été supprimé !');
+    // }
 
-    public function show(Board $board)
-    {
-        return Inertia::render('Boards/Show', ['board' => $board]);
-    }
+    // public function show(Board $board)
+    // {
+    //     return Inertia::render('Boards/Show', ['board' => $board]);
+    // }
 
     public function choice()
     {
@@ -75,5 +91,33 @@ class BoardController extends Controller
     {
         $boards = Board::with('member')->get();
         return Inertia::render('Organization/Board/Manage', ['boards' => $boards]);
+    }
+    //////////////////////TEST/////////////////////////
+    public function editBoardMembers()
+    {
+        $members = Member::all();
+        $currentBoardMemberIds = BoardMember::pluck('member_id')->toArray();
+
+        return Inertia::render('Organization/Board/EditBoardMembers', [
+            'members' => $members,
+            'currentBoardMemberIds' => $currentBoardMemberIds
+        ]);
+    }
+
+
+    public function updateBoardMembers(Request $request)
+    {
+        $request->validate([
+            'member_ids' => 'required|array',
+            'member_ids.*' => 'exists:members,id'
+        ]);
+
+        BoardMember::truncate();
+
+        foreach ($request->member_ids as $memberId) {
+            BoardMember::create(['member_id' => $memberId]);
+        }
+
+        return redirect()->route('dashboard')->with('successMessage', 'Membres du conseil mis à jour.');
     }
 }

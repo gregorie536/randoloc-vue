@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrganizationRequest;
+use App\Http\Requests\MemberRequest;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use Inertia\Inertia;
@@ -20,7 +20,7 @@ class MemberController extends Controller
         return Inertia::render('Organization/Member/Create');
     }
 
-    public function store(OrganizationRequest $request)
+    public function store(MemberRequest $request)
     {
         Member::create($request->all());
 
@@ -32,7 +32,7 @@ class MemberController extends Controller
         return Inertia::render('Organization/Member/Edit', ['member' => $member]);
     }
 
-    public function update(OrganizationRequest $request, Member $member)
+    public function update(MemberRequest $request, Member $member)
     {
         $member->update($request->all());
 

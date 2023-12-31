@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Committee;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\CommitteeMember;
 
 class CommitteeController extends Controller
 {
@@ -16,46 +18,78 @@ class CommitteeController extends Controller
 
     public function create()
     {
-        return Inertia::render('Organization/Committee/Create');
+        $members = Member::all();
+        return Inertia::render(
+            'Organization/Committee/Create',
+            [
+                'members' => $members
+            ]
+        );
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|string',
+            'member_ids' => 'required|array',
+            'member_ids.*' => 'exists:members,id'
         ]);
 
-        Committee::create($request->all());
+        $committee = Committee::create(['name' => $request->name]);
 
-        return redirect()->route('committees.index')->with('successMessage', 'La commission a été créée !');
+        foreach ($request->member_ids as $memberId) {
+            CommitteeMember::create([
+                'committee_id' => $committee->id,
+                'member_id' => $memberId
+            ]);
+        }
+
+        return redirect()->route('dashboard')->with('successMessage', 'La commission a été créée avec succès.');
     }
 
     public function edit(Committee $committee)
     {
-        return Inertia::render('Organization/Committee/Edit', ['committee' => $committee]);
+        $committee->load('members');
+        $selectedMemberIds = $committee->members->pluck('id')->toArray();
+
+        $members = Member::all();
+
+        return Inertia::render('Organization/Committee/Edit', [
+            'committee' => $committee,
+            'members' => $members,
+            'selectedMemberIds' => $selectedMemberIds,
+        ]);
     }
+
+
+
+
 
     public function update(Request $request, Committee $committee)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'member_ids' => 'required|array',
+            'member_ids.*' => 'exists:members,id'
         ]);
 
-        $committee->update($request->all());
+        $committee->update(['name' => $request->name]);
+        $committee->updateMembers($request->member_ids);
 
-        return redirect()->route('committees.index')->with('successMessage', 'La commission a été mise à jour !');
+        return redirect()->route('dashboard')->with('successMessage', 'La commission a été mise à jour !');
     }
+
 
     public function destroy(Committee $committee)
     {
         $committee->delete();
 
-        return redirect()->route('committees.index')->with('successMessage', 'La commission a été supprimée !');
+        return redirect()->route('dashboard')->with('successMessage', 'La commission a été supprimée !');
     }
 
     public function show(Committee $committee)
     {
-        return Inertia::render('Committees/Show', ['committee' => $committee]);
+        return Inertia::render('Organization/Committees/Show', ['committee' => $committee]);
     }
 
     public function choice()
@@ -69,4 +103,3 @@ class CommitteeController extends Controller
         return Inertia::render('Organization/Committee/Manage', ['committees' => $committees]);
     }
 }
-
