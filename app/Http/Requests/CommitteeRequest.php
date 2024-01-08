@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BoardRequest extends FormRequest
+class CommitteeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,21 +22,18 @@ class BoardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'member_id' => 'required|exists:members,id',
-            // 'role' => 'required'
-
+            'name' => 'required|string',
+            'member_ids' => 'required|array',
+            'member_ids.*' => 'exists:members,id'
         ];
     }
 
-    public function messages(): array
+    public function messages()
     {
         return [
-            // 'member_id.required' => 'Member is required',
-            // 'member_id.exists' => 'Member does not exist',
-            // 'role.required' => 'Role is required'
-            'member_id.required' => 'Le membre est requis',
-            'member_id.exists' => 'Le membre n\'existe pas',
-            // 'role.required' => 'Le rôle est requis'
+            'name.required' => 'Le nom de la commission est obligatoire.',
+            'member_ids.required' => 'La commission doit avoir au moins un membre.',
+            'member_ids.*.exists' => 'Un des membres sélectionnés n\'existe pas.'
         ];
     }
 }

@@ -141,4 +141,11 @@ Route::get('/event', [EventController::class, 'index'])->name('event');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('eventDetail');
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categoryDetail');
 
+// TEST //
+// Route::get('/organization/boards', [BoardController::class, 'index'])->name('organization.boards');
+// Route::get('/organization/members', [MemberController::class, 'index'])->name('organization.members');
+Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
+
+// TEST //
+
 require __DIR__ . '/auth.php';

@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="flex justify-center items-center space">
-            <CardTop :homepageFeatures="homepageFeatures" :isModalOpen="isModalOpen"/>/>
+            <CardTop :homepageFeatures="homepageFeatures" :isModalOpen="isModalOpen"/>
         </div>
         <div class="flex justify-center items-center">
             <div class="content">

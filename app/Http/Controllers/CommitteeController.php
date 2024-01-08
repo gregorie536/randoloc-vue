@@ -7,6 +7,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CommitteeMember;
+use App\Http\Requests\CommitteeRequest;
 
 class CommitteeController extends Controller
 {
@@ -27,13 +28,13 @@ class CommitteeController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function store(CommitteeRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'member_ids' => 'required|array',
-            'member_ids.*' => 'exists:members,id'
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string',
+        //     'member_ids' => 'required|array',
+        //     'member_ids.*' => 'exists:members,id'
+        // ]);
 
         $committee = Committee::create(['name' => $request->name]);
 
@@ -61,24 +62,19 @@ class CommitteeController extends Controller
         ]);
     }
 
-
-
-
-
-    public function update(Request $request, Committee $committee)
+    public function update(CommitteeRequest $request, Committee $committee)
     {
-        $request->validate([
-            'name' => 'required',
-            'member_ids' => 'required|array',
-            'member_ids.*' => 'exists:members,id'
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'member_ids' => 'required|array',
+        //     'member_ids.*' => 'exists:members,id'
+        // ]);
 
         $committee->update(['name' => $request->name]);
         $committee->updateMembers($request->member_ids);
 
         return redirect()->route('dashboard')->with('successMessage', 'La commission a été mise à jour !');
     }
-
 
     public function destroy(Committee $committee)
     {

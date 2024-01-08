@@ -5,12 +5,12 @@
                 Administration du bureau
             </h1>
             <div class="space-y-6">
-                <!-- <InertiaLink
+                <InertiaLink
                     :href="route('organization.boards.create')"
                     class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
                 >
                     Créer un rôle dans le bureau
-                </InertiaLink> -->
+                </InertiaLink>
 
                 <InertiaLink
                     :href="route('organization.boards.manage')"

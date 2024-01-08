@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BoardRequest;
 use Inertia\Inertia;
 
+
 class BoardController extends Controller
 {
     // public function index()
@@ -16,6 +17,31 @@ class BoardController extends Controller
     //     $boards = Board::with('member')->get();
     //     return Inertia::render('Boards/Index', ['boards' => $boards]);
     // }
+
+    // public function index()
+    // {
+    //     $members = Member::all();
+    //     $boards = Board::with('member')->get();
+    //     return Inertia::render('Organization/Member/Index', [
+    //         'members' => $members,
+    //         'boards' => $boards
+    //     ]);
+    // }
+    // test
+
+
+
+    // public function index()
+    // {
+    //     $boardMembers = BoardMember::all();
+    //     return Inertia::render('Organization', [
+    //         'boardMembers' => $boardMembers,
+    //     ]);
+    // }
+
+
+    // test
+
 
     public function create()
     {
