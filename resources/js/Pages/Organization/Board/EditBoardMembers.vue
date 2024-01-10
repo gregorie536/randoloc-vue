@@ -2,7 +2,7 @@
     <AuthenticatedLayout>
         <div class="bg-main-bg-color p-8 rounded-md shadow-lg">
             <h1 class="text-xl font-semibold text-main-text-color mb-4">Modifier les Membres du Conseil</h1>
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="submitForm" v-if="members.length > 0">
                 <div v-for="member in members" :key="member.id" class="flex items-center mb-2">
                     <input type="checkbox" :id="'member-' + member.id" :value="member.id" v-model="selectedMembers">
                     <label :for="'member-' + member.id">{{ member.firstname }} {{ member.lastname }}</label>
@@ -12,9 +12,13 @@
                     Enregistrer les modifications
                 </button>
             </form>
+            <div v-else>
+                Aucun membre à afficher.
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>
+
   
 <script>
 import { ref } from 'vue';
@@ -22,7 +26,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 
 export default {
-    components: { AuthenticatedLayout },
+    components: {
+        AuthenticatedLayout,
+    },
     props: {
         members: Array,
         currentBoardMemberIds: Array,
