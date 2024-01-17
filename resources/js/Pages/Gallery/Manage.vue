@@ -5,18 +5,16 @@
                 Gestion des images
             </h1>
             <div class="space-y-4">
-                <div
-                    v-for="gallery in galleries"
-                    :key="gallery.id"
-                    class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6 flex items-center"
-                >
+                <InertiaLink :href="route('gallery.create')"
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
+                    Ajouter une image
+                </InertiaLink>
+                <div v-for="gallery in galleries" :key="gallery.id"
+                    class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6 flex items-center">
                     <div class="flex flex-col md:flex-row justify-between items-center w-full">
                         <div class="flex flex-col items-center w-24 md:w-auto">
-                            <img
-                                class="mb-2 md:mb-0 manage-img self-end"
-                                :src="'/storage/' + gallery.image"
-                                :alt="gallery.comment"
-                            />
+                            <img class="mb-2 md:mb-0 manage-img self-end" :src="'/storage/' + gallery.image"
+                                :alt="gallery.comment" />
                         </div>
                         <div class="flex flex-col items-center w-full md:w-auto">
                             <p class="text-gray-700 text-sm md:text-base max-w-md">
@@ -24,16 +22,12 @@
                             </p>
                         </div>
                         <div>
-                            <InertiaLink
-                                :href="route('gallery.edit', gallery.id)"
-                                class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 text-sm md:text-base mr-2"
-                            >
+                            <InertiaLink :href="route('gallery.edit', gallery.id)"
+                                class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 text-sm md:text-base mr-2">
                                 Modifier
                             </InertiaLink>
-                            <button
-                                @click="confirmDeletion(gallery.id)"
-                                class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 text-sm md:text-base"
-                            >
+                            <button @click="confirmDeletion(gallery.id)"
+                                class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 text-sm md:text-base">
                                 Supprimer
                             </button>
                         </div>

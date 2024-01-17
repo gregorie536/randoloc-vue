@@ -31,7 +31,7 @@ class GalleryController extends Controller
             'comment' => $request->input('comment')
         ]);
 
-        return redirect()->route('dashboard')->with('successMessage', 'L\'image à été ajoutée !');
+        return redirect()->route('gallery.manage');
     }
 
     public function edit(Gallery $gallery)
@@ -51,7 +51,7 @@ class GalleryController extends Controller
         $gallery->comment = $request->input('comment');
         $gallery->save();
 
-        return redirect()->route('dashboard')->with('successMessage', 'L\'image a été mis à jour !');
+        return redirect()->route('gallery.manage');
     }
 
     public function destroy(Gallery $gallery)
@@ -59,7 +59,7 @@ class GalleryController extends Controller
         Storage::disk('public')->delete($gallery->image);
         $gallery->delete();
 
-        return redirect()->route('dashboard')->with('successMessage', 'L\'image a été supprimée !');
+        return redirect()->route('gallery.manage');
     }
 
     public function choice()

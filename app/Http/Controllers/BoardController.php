@@ -29,8 +29,6 @@ class BoardController extends Controller
     // }
     // test
 
-
-
     // public function index()
     // {
     //     $boardMembers = BoardMember::all();
@@ -39,9 +37,7 @@ class BoardController extends Controller
     //     ]);
     // }
 
-
     // test
-
 
     public function create()
     {
@@ -54,14 +50,8 @@ class BoardController extends Controller
         ]);
     }
 
-
     public function store(BoardRequest $request)
     {
-        // $request->validate([
-        //     'member_id' => 'required|exists:members,id',
-        //     'role' => 'required'
-        // ]);
-
         if (Board::where('role', $request->role)->exists()) {
             return redirect()->back()->withErrors(['role' => 'Ce rôle est déjà attribué !']);
         }
@@ -70,7 +60,6 @@ class BoardController extends Controller
 
         return redirect()->route('dashboard')->with('successMessage', 'Le rôle a été créé !');
     }
-
 
     public function edit(Board $board)
     {
@@ -86,11 +75,6 @@ class BoardController extends Controller
 
     public function update(BoardRequest $request, Board $board)
     {
-        // $request->validate([
-        //     'member_id' => 'required|exists:members,id',
-        //     'role' => 'required'
-        // ]);
-
         $board->update($request->all());
 
         return redirect()->route('dashboard')->with('successMessage', 'Le rôle a été mis à jour !');
@@ -118,7 +102,7 @@ class BoardController extends Controller
         $boards = Board::with('member')->get();
         return Inertia::render('Organization/Board/Manage', ['boards' => $boards]);
     }
-    //////////////////////TEST/////////////////////////
+
     public function editBoardMembers()
     {
         $members = Member::all();
