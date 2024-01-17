@@ -27,10 +27,7 @@
                     <a :href="route('contact')">Contact</a>
                 </li>
                 <li>
-                    <a :href="route('login')">Login</a>
-                </li>
-                <li>
-                    <a :href="route('register')">Register</a>
+                    <a :href="route('login')">Accès association</a>
                 </li>
             </ul>
         </div>
