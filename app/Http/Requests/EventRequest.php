@@ -25,7 +25,7 @@ class EventRequest extends FormRequest
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:255',
             'supervisor' => 'required|string',
-            'day' => 'required|string',
+            'day' => 'nullable|int',
             'date' => 'required|date',
             'number_km' => 'required|numeric',
             'location' => 'required|string',

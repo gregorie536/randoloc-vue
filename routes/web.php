@@ -101,10 +101,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/organization/boards/manage', [BoardController::class, 'manage'])->name('organization.boards.manage');
     Route::put('/organization/boards/{board}', [BoardController::class, 'update'])->name('organization.boards.update');
     Route::get('/organization/boards/choice', [BoardController::class, 'choice'])->name('organization.boards.choice');
-    //////////////////////TEST/////////////////////////
     Route::get('/organization/boards/edit-members', [BoardController::class, 'editBoardMembers'])->name('organization.boards.edit-members');
     Route::post('/organization/boards/update-members', [BoardController::class, 'updateBoardMembers'])->name('organization.boards.update-members');
-    //////////////////////TEST/////////////////////////
 
     // Members
     Route::get('/organization/members/create', [MemberController::class, 'create'])->name('organization.members.create');
@@ -140,12 +138,7 @@ Route::get('/homepage_features', [HomepageFeaturesController::class, 'index'])->
 Route::get('/event', [EventController::class, 'index'])->name('event');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('eventDetail');
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categoryDetail');
-
-// TEST //
-// Route::get('/organization/boards', [BoardController::class, 'index'])->name('organization.boards');
-// Route::get('/organization/members', [MemberController::class, 'index'])->name('organization.members');
 Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
 
-// TEST //
-
 require __DIR__ . '/auth.php';
+

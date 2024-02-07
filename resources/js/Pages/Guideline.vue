@@ -59,7 +59,8 @@
                     </li>
                     <li>
                         Ainsi, le montant de la cotisation pour la saison
-                        {{ seasonYear.season_year }} est de {{ totalPrice }} € Pour adhérer, merci de remplir les
+                        {{ seasonYear.season_year }} est de {{ formatPrice(totalPrice) }} € Pour adhérer, merci de remplir
+                        les
                         documents ci-dessous :
                     </li>
                     <li class="font-bold">Bulletin d’inscription</li>
@@ -162,13 +163,26 @@ export default {
         'associationPrice',
         'totalPrice',
         'seasonYear'
-    ] 
+    ]
     ,
     data() {
         return {
             titre: "Règles et organisations",
         };
     },
+    methods: {
+        formatPrice(value) {
+            if (!value) return '0';
+            let formattedValue = value.toFixed(2);
+            formattedValue = formattedValue.replace('.', ',');
+            if (formattedValue.endsWith(',00')) {
+                formattedValue = formattedValue.slice(0, -3);
+            }
+            return formattedValue;
+        }
+    }
+
+
 };
 
 </script>

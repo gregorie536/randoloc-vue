@@ -18,16 +18,6 @@ class OrganizationController extends Controller
         return Inertia::render('Organization/Choice');
     }
 
-    // public function index()
-    // {
-    //     $members = Member::all();
-    //     $boards = Board::with('member')->get();
-    //     return Inertia::render('Organization', [
-    //         'members' => $members,
-    //         'boards' => $boards
-
-    //     ]);
-    // }
     public function index()
     {
         $members = Member::all();

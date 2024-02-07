@@ -6,21 +6,16 @@
             </h1>
             <form @submit.prevent="submitForm" class="space-y-6">
                 <ValidationErrors :errors="errors" />
-                <div
-                    v-for="(guideline, index) in guidelines"
-                    :key="guideline.id"
-                    class="border-b-2 border-aliceblue pb-6 mb-6"
-                >
+                <div v-for="(guideline, index) in guidelines" :key="guideline.id"
+                    class="border-b-2 border-aliceblue pb-6 mb-6">
                     <h2 class="text-xl font-semibold text-main-text-color mb-4">
                         Prix {{ index + 1 }} :
                         {{ formatGuidelineType(guideline.type) }}
                     </h2>
                     <div class="flex flex-col mb-4">
-                        <input
-                            :id="'price' + index"
-                            v-model="guideline.price"
-                            class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
-                        />
+                        <input :id="'price' + index" v-model="guideline.price"
+                            class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color" />
+                        <p>Prix affiché: {{ guideline.formattedPrice }}</p>
                     </div>
                 </div>
 
@@ -28,24 +23,17 @@
                     <h2 class="text-xl font-semibold text-main-text-color mb-4">
                         Année de saison :
                     </h2>
-                    <input
-                        id="season_year"
-                        v-model="seasonYear"
-                        class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
-                    />
+                    <input id="season_year" v-model="seasonYear"
+                        class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color" />
                 </div>
 
-                <button
-                    type="submit"
-                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
-                >
+                <button type="submit"
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
                     Mettre à jour
                 </button>
-                <button
-                    type="button"
+                <button type="button"
                     class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none"
-                    @click="goToDashboard"
-                >
+                    @click="goToDashboard">
                     Annuler
                 </button>
             </form>
@@ -70,41 +58,43 @@ export default {
         const guidelines = ref(props.guidelines);
         const seasonYear = ref(props.seasonYear);
 
-        function formatSeasonYear(input) {
-            let numbers = input.replace(/\D/g, "");
-            if (numbers.length !== 8) {
-                return input;
-            }
-            return `${numbers.substring(0, 4)} - ${numbers.substring(4, 8)}`;
-        }
-
         function submitForm() {
-            const updatedGuidelines = guidelines.value.map((guideline) => {
+            const updatedGuidelines = guidelines.value.map(guideline => {
+                const formattedPrice = validatePrice(guideline.price);
                 return {
-                    id: guideline.id,
-                    type: guideline.type,
-                    price: guideline.price,
-                    season_year: formatSeasonYear(seasonYear.value),
+                    ...guideline,
+                    price: formattedPrice
                 };
             });
-            Inertia.post("/guidelines/update", {
-                guidelines: updatedGuidelines,
-            });
+
+            if (updatedGuidelines.every(guide => guide.price !== "0,00")) {
+                Inertia.post("/guidelines/update", {
+                    guidelines: updatedGuidelines,
+                });
+            } else {
+            }
         }
 
         function validatePrice(price) {
-            let num = Math.floor(Number(price));
-            return num >= 0 && num <= 999 ? num : 1;
-        }
 
-        guidelines.value.forEach((guideline, index) => {
-            watch(
-                () => guidelines.value[index].price,
-                (newValue) => {
-                    guidelines.value[index].price = validatePrice(newValue);
-                }
-            );
-        });
+            if (typeof price !== 'string') {
+                price = String(price);
+            }
+            let cleanPrice = price.trim().replace(',', '.');
+            let floatPrice = parseFloat(cleanPrice);
+
+            if (isNaN(floatPrice) || floatPrice < 0) return "0,00";
+
+            if (floatPrice > 99.99) floatPrice = 99.99;
+
+            let formattedPrice = floatPrice.toFixed(2);
+
+            if (formattedPrice.endsWith('.00')) {
+                return formattedPrice.substring(0, formattedPrice.length - 3);
+            }
+
+            return formattedPrice.replace('.', ',');
+        }
 
         function goToDashboard() {
             Inertia.get("/dashboard");

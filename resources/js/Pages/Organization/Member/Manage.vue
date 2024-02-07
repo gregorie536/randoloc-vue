@@ -5,34 +5,28 @@
                 Gestion des membres
             </h1>
             <div class="space-y-4">
-                <div
-                    v-for="member in members"
-                    :key="member.id"
-                    class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6"
-                >
-                    <div
-                        class="flex flex-col md:flex-row justify-between items-center"
-                    >
+                <InertiaLink :href="route('organization.members.create')"
+                    class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
+                    Créer un membre
+                </InertiaLink>
+                <div v-for="member in members" :key="member.id"
+                    class="border-b-2 border-aliceblue pb-4 mb-4 md:pb-6 md:mb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
                         <span class="text-lg mb-2 md:mb-0">
                             {{ member.firstname }} {{ member.lastname }}
                         </span>
                         <div>
-                            <InertiaLink
-                                :href="
-                                    route(
-                                        'organization.members.edit',
-                                        member.id
-                                    )
+                            <InertiaLink :href="route(
+                                'organization.members.edit',
+                                member.id
+                            )
                                 "
-                                class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded text-sm md:text-base mr-2"
-                            >
+                                class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded text-sm md:text-base mr-2">
                                 Modifier
                             </InertiaLink>
 
-                            <button
-                                @click="confirmDeletion(member.id)"
-                                class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded text-sm md:text-base"
-                            >
+                            <button @click="confirmDeletion(member.id)"
+                                class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded text-sm md:text-base">
                                 Supprimer
                             </button>
                         </div>

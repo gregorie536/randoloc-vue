@@ -11,7 +11,13 @@
                     class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none">
                     Enregistrer les modifications
                 </button>
+                <button type="button"
+                    class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none"
+                    @click="goToDashboard">
+                    Annuler
+                </button>
             </form>
+
             <div v-else>
                 Aucun membre à afficher.
             </div>
@@ -28,6 +34,7 @@ import { Inertia } from '@inertiajs/inertia';
 export default {
     components: {
         AuthenticatedLayout,
+
     },
     props: {
         members: Array,
@@ -41,9 +48,14 @@ export default {
             Inertia.post('/organization/boards/update-members', { member_ids: selectedMembers.value });
         };
 
+        function goToDashboard() {
+            Inertia.get("/dashboard");
+        }
+
         return {
             selectedMembers,
             submitForm,
+            goToDashboard
         };
     },
 };

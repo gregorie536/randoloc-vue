@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
-use Illuminate\Http\Request;
 use App\Models\Event;
 use Inertia\Inertia;
 use App\Models\Category;
-use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -48,7 +46,7 @@ class EventController extends Controller
         $event->user_id = auth()->id();
         $event->save();
 
-        return redirect()->route('dashboard')->with('successMessage', 'L\'évènement a été créé !');
+        return redirect()->route('events.manage');
     }
 
     /**
@@ -89,7 +87,7 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $event->update($request->validated());
 
-        return redirect()->route('dashboard')->with('successMessage', 'L\'évènement a été mis à jour !');
+        return redirect()->route('events.manage');
     }
 
     /**
@@ -103,7 +101,7 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->route('dashboard')->with('successMessage', 'L\'évènement a été supprimé !');
+        return redirect()->route('events.manage');
     }
 
     public function choice()

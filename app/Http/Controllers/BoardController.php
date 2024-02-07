@@ -9,36 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BoardRequest;
 use Inertia\Inertia;
 
-
 class BoardController extends Controller
 {
-    // public function index()
-    // {
-    //     $boards = Board::with('member')->get();
-    //     return Inertia::render('Boards/Index', ['boards' => $boards]);
-    // }
-
-    // public function index()
-    // {
-    //     $members = Member::all();
-    //     $boards = Board::with('member')->get();
-    //     return Inertia::render('Organization/Member/Index', [
-    //         'members' => $members,
-    //         'boards' => $boards
-    //     ]);
-    // }
-    // test
-
-    // public function index()
-    // {
-    //     $boardMembers = BoardMember::all();
-    //     return Inertia::render('Organization', [
-    //         'boardMembers' => $boardMembers,
-    //     ]);
-    // }
-
-    // test
-
     public function create()
     {
         $members = Member::all();
@@ -58,7 +30,7 @@ class BoardController extends Controller
 
         Board::create($request->all());
 
-        return redirect()->route('dashboard')->with('successMessage', 'Le rôle a été créé !');
+        return redirect()->route('organization.boards.manage');
     }
 
     public function edit(Board $board)
@@ -77,7 +49,7 @@ class BoardController extends Controller
     {
         $board->update($request->all());
 
-        return redirect()->route('dashboard')->with('successMessage', 'Le rôle a été mis à jour !');
+        return redirect()->route('organization.boards.manage');
     }
 
     // public function destroy(Board $board)
@@ -114,7 +86,6 @@ class BoardController extends Controller
         ]);
     }
 
-
     public function updateBoardMembers(Request $request)
     {
         $request->validate([
@@ -128,6 +99,6 @@ class BoardController extends Controller
             BoardMember::create(['member_id' => $memberId]);
         }
 
-        return redirect()->route('dashboard')->with('successMessage', 'Membres du conseil mis à jour.');
+        return redirect()->route('dashboard')->with('successMessage', 'Les membres du conseil ont été mis à jour !');
     }
 }

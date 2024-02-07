@@ -7,89 +7,46 @@
             <form @submit.prevent="submitForm" class="space-y-6">
                 <ValidationErrors :errors="errors" />
                 <div class="border-b-2 border-aliceblue pb-6 mb-6">
-                    <div
-                        v-for="(field, index) in textFields"
-                        :key="index"
-                        class="flex flex-col mb-4"
-                    >
-                        <label
-                            :for="field.id"
-                            class="text-main-text-color mb-1"
-                            >{{ field.label }}</label
-                        >
-                        <input
-                            :id="field.id"
-                            v-model="form[field.model]"
-                            :type="field.type"
-                            class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
-                        />
+                    <div v-for="(field, index) in textFields" :key="index" class="flex flex-col mb-4">
+                        <label :for="field.id" class="text-main-text-color mb-1">{{ field.label }}</label>
+                        <input :id="field.id" v-model="form[field.model]" :type="field.type"
+                            class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color" />
                     </div>
                 </div>
                 <div class="flex flex-col mb-4">
-                    <label for="eventDay" class="text-main-text-color mb-1"
-                        >Jour de la semaine :</label
-                    >
-                    <select
-                        id="eventDay"
-                        v-model="form.day"
-                        class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
-                    >
+                    <label for="eventDay" class="text-main-text-color mb-1">Jour de la semaine :</label>
+                    <select id="eventDay" v-model="form.day"
+                        class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color">
                         <option value="" disabled>Sélectionnez un jour</option>
-                        <option
-                            v-for="day in daysOfWeek"
-                            :key="day"
-                            :value="day"
-                        >
+                        <option v-for="day in daysOfWeek" :key="day" :value="day">
                             {{ day }}
                         </option>
                     </select>
                 </div>
-
                 <div class="flex flex-col mb-4">
-                    <label for="eventCategory" class="text-main-text-color mb-1"
-                        >Catégorie :</label
-                    >
-                    <select
-                        id="eventCategory"
-                        v-model="form.category_id"
-                        class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color"
-                    >
+                    <label for="eventCategory" class="text-main-text-color mb-1">Catégorie :</label>
+                    <select id="eventCategory" v-model="form.category_id"
+                        class="p-2 rounded-md border border-aliceblue focus:outline-none focus:border-nav-bg-color">
                         <option value="" disabled>
                             Sélectionnez une catégorie
                         </option>
-                        <option
-                            v-for="category in categories"
-                            :key="category.id"
-                            :value="category.id"
-                        >
+                        <option v-for="category in categories" :key="category.id" :value="category.id">
                             {{ category.name }}
                         </option>
                     </select>
                 </div>
                 <div class="flex flex-col mb-4">
-                    <label for="eventActive" class="text-main-text-color mb-1"
-                        >Activer l'événement :</label
-                    >
-                    <input
-                        id="eventActive"
-                        v-model="form.active"
-                        type="checkbox"
-                        class="rounded border-gray-400 focus:border-blue-500"
-                    />
+                    <label for="eventActive" class="text-main-text-color mb-1">Activer l'événement :</label>
+                    <input id="eventActive" v-model="form.active" type="checkbox"
+                        class="rounded border-gray-400 focus:border-blue-500" />
                 </div>
-
                 <div class="flex justify-end">
-                    <button
-                        type="submit"
-                        class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none mr-2"
-                    >
+                    <button type="submit"
+                        class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none mr-2">
                         Créer
                     </button>
-                    <button
-                        type="button"
-                        @click="goToDashboard"
-                        class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none"
-                    >
+                    <button type="button" @click="goToDashboard"
+                        class="bg-gray-300 text-black py-2 px-6 rounded-md hover:bg-gray-400 focus:outline-none">
                         Annuler
                     </button>
                 </div>
@@ -178,38 +135,25 @@ export default {
             Inertia.get("/dashboard");
         }
 
+        function capitalizeField(field) {
+            form.value[field] = capitalizeFirstLetter(form.value[field]);
+        }
+
         function capitalizeFirstLetter(string) {
             if (!string || typeof string !== "string") return "";
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
-        watch(
-            () => form.value.name,
-            (newValue) => {
-                form.value.name = capitalizeFirstLetter(newValue);
-            }
-        );
+        const fieldsToCapitalize = ["name", "description", "supervisor", "location"];
 
-        watch(
-            () => form.value.description,
-            (newValue) => {
-                form.value.description = capitalizeFirstLetter(newValue);
-            }
-        );
-
-        watch(
-            () => form.value.supervisor,
-            (newValue) => {
-                form.value.supervisor = capitalizeFirstLetter(newValue);
-            }
-        );
-
-        watch(
-            () => form.value.location,
-            (newValue) => {
-                form.value.location = capitalizeFirstLetter(newValue);
-            }
-        );
+        fieldsToCapitalize.forEach((field) => {
+            watch(
+                () => form.value[field],
+                (newValue) => {
+                    capitalizeField(field);
+                }
+            );
+        });
 
         watch(
             () => form.value.number_km,

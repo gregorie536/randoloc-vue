@@ -28,7 +28,7 @@ class CategoryController extends Controller
         $category->user_id = auth()->id();
         $category->save();
 
-        return redirect()->route('dashboard')->with('successMessage', 'La catégorie a été crée !');
+        return redirect()->route('categories.manage');
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect()->route('dashboard')->with('successMessage', 'La catégorie a été mise à jour !');
+        return redirect()->route('categories.manage');
     }
 
     /**
@@ -80,16 +80,13 @@ class CategoryController extends Controller
     {
         $category = Category::with('events')->findOrFail($id);
 
-        // if ($category->events()->count() > 0) {
-        //     return redirect()->route('categories.manage')->with('error', 'Cette catégorie ne peut pas être supprimée car elle contient des événements !');
-        // }
         foreach ($category->events as $event) {
             $event->delete();
         }
 
         $category->delete();
 
-        return redirect()->route('dashboard')->with('successMessage', 'La catégorie a été supprimée !');
+        return redirect()->route('categories.manage');
     }
 
     public function manage()
@@ -98,3 +95,4 @@ class CategoryController extends Controller
         return Inertia::render('Category/Manage', ['categories' => $categories]);
     }
 }
+

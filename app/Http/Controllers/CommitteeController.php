@@ -30,12 +30,6 @@ class CommitteeController extends Controller
 
     public function store(CommitteeRequest $request)
     {
-        // $request->validate([
-        //     'name' => 'required|string',
-        //     'member_ids' => 'required|array',
-        //     'member_ids.*' => 'exists:members,id'
-        // ]);
-
         $committee = Committee::create(['name' => $request->name]);
 
         foreach ($request->member_ids as $memberId) {
@@ -45,7 +39,7 @@ class CommitteeController extends Controller
             ]);
         }
 
-        return redirect()->route('dashboard')->with('successMessage', 'La commission a été créée avec succès.');
+        return redirect()->route('organization.committees.manage');
     }
 
     public function edit(Committee $committee)
@@ -64,23 +58,17 @@ class CommitteeController extends Controller
 
     public function update(CommitteeRequest $request, Committee $committee)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'member_ids' => 'required|array',
-        //     'member_ids.*' => 'exists:members,id'
-        // ]);
-
         $committee->update(['name' => $request->name]);
         $committee->updateMembers($request->member_ids);
 
-        return redirect()->route('dashboard')->with('successMessage', 'La commission a été mise à jour !');
+        return redirect()->route('organization.committees.manage');
     }
 
     public function destroy(Committee $committee)
     {
         $committee->delete();
 
-        return redirect()->route('dashboard')->with('successMessage', 'La commission a été supprimée !');
+        return redirect()->route('organization.committees.manage');
     }
 
     public function show(Committee $committee)

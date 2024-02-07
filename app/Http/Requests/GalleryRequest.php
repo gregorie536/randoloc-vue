@@ -22,7 +22,8 @@ class GalleryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'sometimes|required|image|max:2048',
+            // 'image' => 'sometimes|required|image|max:2048',
+            'image' => 'sometimes|required|image',
             'comment' => 'required|string'
         ];
     }
@@ -32,7 +33,7 @@ class GalleryRequest extends FormRequest
         return [
             'image.required' => 'L\'image est obligatoire.',
             'image.image' => 'L\'image doit être une image.',
-            'image.max' => 'L\'image ne doit pas dépasser 2 Mo.',
+            // 'image.max' => 'L\'image ne doit pas dépasser 2 Mo.',
             'comment.string' => 'Le commentaire doit être une chaîne de caractères.',
             'comment.required' => 'Le commentaire est obligatoire.'
         ];

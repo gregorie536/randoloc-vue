@@ -30,19 +30,12 @@
                 </ul>
             </div>
         </div>
-
         <div>
             <p class="text-2xl font-semibold mb-4 mt-6">Les catégories</p>
         </div>
 
-        <CategoryList
-            :categories="categories"
-            @select-category="handleSelectCategory"
-        />
+        <CategoryList :categories="categories" @select-category="handleSelectCategory" />
         <hr class="hr-main-text-color" />
-
-
-
         <div>
             <p class="text-2xl font-semibold mb-4 mt-6">Les sorties</p>
         </div>
@@ -92,6 +85,7 @@ p {
     color: $main-text-color;
     margin-left: 30px;
 }
+
 .hr-main-text-color {
     border-color: $main-text-color;
     border-width: 2px;
@@ -100,5 +94,4 @@ p {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
 }
-
 </style>

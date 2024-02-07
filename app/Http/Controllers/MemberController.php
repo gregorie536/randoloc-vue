@@ -24,7 +24,7 @@ class MemberController extends Controller
     {
         Member::create($request->all());
 
-        return redirect()->route('dashboard')->with('successMessage', 'Le membre a été créé !');
+        return redirect()->route('organization.members.manage');
     }
 
     public function edit(Member $member)
@@ -36,14 +36,14 @@ class MemberController extends Controller
     {
         $member->update($request->all());
 
-        return redirect()->route('dashboard')->with('successMessage', 'Le membre a été mis à jour !');
+        return redirect()->route('organization.members.manage');
     }
 
     public function destroy(Member $member)
     {
         $member->delete();
 
-        return redirect()->route('dashboard')->with('successMessage', 'Le membre a été supprimé !');
+        return redirect()->route('organization.members.manage');
     }
 
     // public function show(Member $member)

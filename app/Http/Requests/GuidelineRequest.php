@@ -22,7 +22,9 @@ class GuidelineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'guidelines.*.price' => 'required|numeric',
+            // 'guidelines.*.price' => 'required|numeric',
+            'guidelines.*.price' => ['required', 'regex:/^\d+(,\d{1,2})?$/'],
+
             'guidelines.*.season_year' => 'required',
         ];
     }
@@ -31,9 +33,11 @@ class GuidelineRequest extends FormRequest
     {
         return [
             'guidelines.*.price.required' => 'Le prix est obligatoire.',
-            'guidelines.*.price.numeric' => 'Le prix doit être un nombre.',
+
+            // 'guidelines.*.price.numeric' => 'Le prix doit être un nombre.',
+            'guidelines.*.price.regex' => 'Le format du prix est invalide.',
+
             'guidelines.*.season_year.required' => 'L\'année de saison est obligatoire.',
         ];
     }
 }
-
