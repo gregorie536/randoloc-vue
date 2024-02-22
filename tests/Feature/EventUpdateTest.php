@@ -23,6 +23,8 @@ class EventUpdateTest extends TestCase
         // Création d'un utilisateur et authentification (si nécessaire)
         $user = User::factory()->create();
         $this->actingAs($user);
+
+        // Création d'une catégorie
         $category = Category::factory()->create();
 
         // Création d'un événement à mettre à jour
@@ -41,7 +43,6 @@ class EventUpdateTest extends TestCase
 
         ]);
 
-        // Nouvelles données pour l'événement
         $updatedData = [
             'name' => 'New Title',
             'description' => 'New description',
@@ -66,7 +67,6 @@ class EventUpdateTest extends TestCase
             'id' => $event->id,
             'name' => 'New Title',
             'description' => 'New description',
-            // Vérifiez la présence d'autres champs mis à jour
         ]);
     }
 }

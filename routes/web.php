@@ -131,6 +131,7 @@ Route::get('/legal-notice', function () {
     return Inertia::render('LegalNotice');
 })->name('legalNotice');
 
+// Routes publiques
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/guideline', [GuidelineController::class, 'index'])->name('guideline');
 Route::get('/gallery-photos', [GalleryController::class, 'index'])->name('galleryPhotos');

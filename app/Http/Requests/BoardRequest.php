@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BoardRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class BoardRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -23,7 +24,7 @@ class BoardRequest extends FormRequest
     {
         return [
             'member_id' => 'required|exists:members,id',
-            // 'role' => 'required'
+            'role' => 'required'
 
         ];
     }
@@ -31,12 +32,11 @@ class BoardRequest extends FormRequest
     public function messages(): array
     {
         return [
-            // 'member_id.required' => 'Member is required',
-            // 'member_id.exists' => 'Member does not exist',
-            // 'role.required' => 'Role is required'
             'member_id.required' => 'Le membre est requis',
             'member_id.exists' => 'Le membre n\'existe pas',
-            // 'role.required' => 'Le rôle est requis'
         ];
     }
 }
+
+
+

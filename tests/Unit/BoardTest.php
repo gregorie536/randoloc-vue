@@ -20,7 +20,7 @@ class BoardTest extends TestCase
             'role' => 'Président',
         ]);
 
-        // Vérification que 'member_id' du conseil correspond à l'ID du membre créé
+        // Vérification que 'member_id' du conseil correspond à l'id du membre créé
         $this->assertEquals($member->id, $board->member_id);
 
         // Vérification que le membre associé au conseil est bien le membre créé

@@ -17,7 +17,6 @@ class MemberDeletionTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        // Assurez-vous d'avoir une méthode d'authentification ou ignorez cette partie si votre route n'exige pas d'authentification
         $user = User::factory()->create();
         $this->actingAs($user);
 
