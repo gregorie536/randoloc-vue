@@ -59,15 +59,22 @@
                     rectification et d’opposition aux données vous concernant
                     que vous pouvez exercer en envoyant un courrier électronique
                     à **À définir**. Ce site utilise les cookies pour les
-                    idetifiants de connexion uniquement. Liens **À définir**
-                    autorise la mise en place d’un lien hypertexte pointant vers
-                    son contenu, en respectant les principes suivants : Le lien
-                    pointant vers le site de **À définir** soit accessible par
-                    l’ouverture d’une nouvelle fenêtre/onglet. Le lien est
-                    présenté de la manière suivante : **À définir.fr** Cette
-                    autorisation exclut l’utilisation du logo **À définir.fr**
-                    Loi applicable L’usage de ce site web est régi par la loi
-                    française à l’exception de toute autre législation.
+                    idetifiants de connexion uniquement.
+                </p>
+                <p class="font-bold">Liens</p>
+                <p>
+                    **À définir** autorise la mise en place d’un lien hypertexte
+                    pointant vers son contenu, en respectant les principes
+                    suivants : Le lien pointant vers le site de **À définir**
+                    soit accessible par l’ouverture d’une nouvelle
+                    fenêtre/onglet. Le lien est présenté de la manière suivante
+                    : **À définir.fr** Cette autorisation exclut l’utilisation
+                    du logo **À définir.fr**
+                </p>
+                <p class="font-bold">Loi applicable</p>
+                <p>
+                    L’usage de ce site web est régi par la loi française à
+                    l’exception de toute autre législation.
                 </p>
             </div>
         </div>

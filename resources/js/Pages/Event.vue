@@ -30,24 +30,68 @@
                 </ul>
             </div>
         </div>
+        <div>
+            <p class="text-2xl font-semibold mb-4 mt-6">Les catégories</p>
+        </div>
+
+        <CategoryList :categories="categories" @select-category="handleSelectCategory" />
+        <hr class="hr-main-text-color" />
+        <div>
+            <p class="text-2xl font-semibold mb-4 mt-6">Les sorties</p>
+        </div>
+        <EventList :events="events" @select-event="handleEventSelection" />
     </MainLayout>
 </template>
 
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import EventList from "@/Components/EventList.vue";
+import CategoryList from "@/Components/CategoryList.vue";
 export default {
     components: {
         MainLayout,
+        EventList,
+        CategoryList,
     },
     name: "Event",
+
+    props: {
+        events: Array,
+        categories: Array,
+    },
+
     data() {
         return {
             titre: "Sorties et séjours",
         };
+    },
+    methods: {
+        handleSelectEvent(eventId) {
+            Inertia.get(this.route("eventDetail", eventId));
+        },
+        handleSelectCategory(categoryId) {
+            Inertia.get(this.route("categoryDetail", categoryId));
+        },
+    },
+    mounted() {
+        console.log(this.events);
     },
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../css/style.scss";
+p {
+    color: $main-text-color;
+    margin-left: 30px;
+}
+
+.hr-main-text-color {
+    border-color: $main-text-color;
+    border-width: 2px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
 </style>

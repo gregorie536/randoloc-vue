@@ -39,7 +39,7 @@ h1 {
     margin-top: 20px;
 }
 
-// contenu sur fond background de toutes les pages
+// Contenu sur fond background de toutes les pages
 .content {
     background-color: $content-bg-color;
     width: 90%;
@@ -56,58 +56,71 @@ h1 {
         color: $main-text-color;
     }
 }
+
 .main-text-color {
     color: $main-text-color;
 }
 
-/****************************************************
-                      HEADER
-*****************************************************/
+// button de toutes les pages
+button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.error {
+    color: $error;
+    font-size: larger;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+}
 
 /****************************************************
-                      MAIN
+                      MIXIN
 *****************************************************/
 
-/****************************************************
-                      FOOTER
-*****************************************************/
+@mixin rounded-card {
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
-/******************************************************************************/
-/*=======================================================
-                    MEDIA QUERIES
-=========================================================*/
-/******************************************************************************/
+@mixin flex-and-rounded-card {
+    .flex-direction-row-desktop {
+        display: flex;
+        flex-direction: row;
+    }
 
-/*========================= RESPONSIVE TABLETTE ======================*/
+    .rounded-card {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
+
+@mixin stylesMixin {
+    .bg-main-bg-color {
+        background-color: $main-bg-color;
+    }
+
+    .text-main-text-color {
+        color: $main-text-color;
+    }
+
+    .border-aliceblue {
+        border-color: $aliceblue;
+    }
+
+    .bg-nav-bg-color {
+        background-color: $nav-bg-color;
+    }
+}
 
 @media screen and (min-width: 768px) {
-    /*s'applique à partir de 768px et au-delà*/
 
-    /* ============ GLOBAL ==============*/
-
-    /* ============ HEADER ==============*/
-
-    /* ============ MAIN ==============*/
-
-    /* ============ FOOTER ==============*/
 }
-
-/*fermeture @media tablette*/
-
-/******************************************************************************/
-
-/*========================= RESPONSIVE DESKTOP ======================*/
 
 @media screen and (min-width: 1025px) {
-    /*s'applique à partir de 1025px et au-delà*/
 
-    /* ============ GLOBAL ==============*/
-
-    /* ============ HEADER ==============*/
-
-    /* ============ MAIN ==============*/
-
-    /* ============ FOOTER ==============*/
 }
-
-/*fermeture @media desktop*/

@@ -25,37 +25,19 @@
                 </li>
                 <li>
                     <a :href="route('contact')">Contact</a>
-                    <!-- <Link href="contact">Contact</Link> -->
                 </li>
                 <li>
-                    <a :href="route('login')">Login</a>
-                </li>
-                <li>
-                    <a :href="route('register')">Register</a>
+                    <a :href="route('login')">Accès association</a>
                 </li>
             </ul>
-            <!-- <router-link to="/"> -->
-            <!-- <h1 class="logo">
-            <img :src="logoHeader.url" :alt="logoHeader.alt" />
-          </h1> -->
-            <!-- </router-link> -->
         </div>
     </nav>
 </template>
 
 <script>
-// import { Link } from '@inertiajs/vue3'
-
+import { Link } from "@inertiajs/vue3";
 
 export default {
-    // data() {
-    //   return {
-    //     logoHeader: {
-    //       url: require("@/assets/img/logo/logo.svg"),
-    //       alt: "logo",
-    //     },
-    //   };
-    // },
     methods: {
         sidemenu: {
             el: "#sidemenu",
@@ -103,12 +85,9 @@ export default {
 }
 
 .menu-items li {
-    list-style: none;
-    margin-left: 1.5rem;
-    font-size: 1.3rem;
+    margin: 0 1rem;
 }
-
-@media (max-width: 768px) {
+@media (max-width: 1043px) {
     .navbar {
         opacity: 0.95;
     }
@@ -186,7 +165,6 @@ export default {
         margin-left: -40px;
         padding-left: 40px;
         transition: transform 0.5s ease-in-out;
-        //   box-shadow: 5px 0px 10px 0px #aaa;
         overflow: scroll;
     }
 
@@ -217,12 +195,6 @@ export default {
 
     .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
         transform: rotate(-45deg);
-    }
-}
-
-@media (max-width: 500px) {
-    .navbar-container input[type="checkbox"]:checked ~ .logo {
-        display: none;
     }
 }
 </style>
