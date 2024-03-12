@@ -73,9 +73,6 @@ export default {
             Inertia.get(this.route("categoryDetail", categoryId));
         },
     },
-    mounted() {
-        console.log(this.events);
-    },
 };
 </script>
 

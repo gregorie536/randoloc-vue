@@ -25,7 +25,7 @@
                     :href="route('categories.create')"
                     class="bg-nav-bg-color text-white py-2 px-6 rounded-md hover:bg-opacity-90 focus:outline-none"
                 >
-                    Créer une catégories
+                    Créer une catégorie
                 </InertiaLink>
 
                 <InertiaLink

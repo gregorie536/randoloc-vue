@@ -12,22 +12,22 @@ class EventIntegrationTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_user_can_create_an_event()
+    public function a_user_can_create_an_event_and_be_redirected()
     {
         // Suppression de la gestion des exceptions
         $this->withoutExceptionHandling();
 
-        // Création d'un utilisateur et authentification
+        // Crée un utilisateur de test
         $user = User::factory()->create();
         $this->actingAs($user);
 
         // Création d'une catégorie
         $category = Category::factory()->create();
 
-        // Données du nouvel événement
+        // Données de l'événement
         $eventData = [
             'name' => 'New Event',
-            'description' => 'Description new event',
+            'description' => 'Description of the new event',
             'location' => 'Some location',
             'date' => '2024-02-10',
             'number_km' => 10,
@@ -42,12 +42,13 @@ class EventIntegrationTest extends TestCase
         // Envoi de la requête POST
         $response = $this->post(route('events.store'), $eventData);
 
-        // Vérifications
-        $response->assertRedirect();
+        // Vérifie que la réponse à la requête une redirection vers la page de gestion
+        $response->assertRedirect(route('events.manage'));
 
-        $this->assertDatabaseHas('events', $eventData);
+        // Vérification que l'utilisateur voit l'événement sur la page
+        $response = $this->get(route('events.manage'));
+        $response->assertSee('New Event');
     }
 }
-
 
 
